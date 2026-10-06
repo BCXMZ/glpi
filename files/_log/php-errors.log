@@ -1,0 +1,29 @@
+[2026-09-16 13:44:43] glpi.WARNING:   *** Test logger
+[2026-09-16 13:44:43] glpi.WARNING:   *** Warning: mkdir(): Permission denied at filesystem.php line 611
+  Backtrace :
+  ...ngmachine/safe/generated/8.2/filesystem.php:611 
+  ./src/Toolbox.php:1137                             Safe\mkdir()
+  ...System/Requirement/DirectoryWriteAccess.php:122 Toolbox::testWriteAccessToDirectory()
+  .../System/Requirement/AbstractRequirement.php:131 Glpi\System\Requirement\DirectoryWriteAccess->check()
+  .../System/Requirement/AbstractRequirement.php:212 Glpi\System\Requirement\AbstractRequirement->doCheck()
+  .../twig/twig/src/Extension/CoreExtension.php:1928 Glpi\System\Requirement\AbstractRequirement->isValidated()
+  ...tes/1d/1d18bf0d22fff4433c8cc7c6dc058906.php:114 Twig\Extension\CoreExtension::getAttribute()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_dbdedb6a38038468fad234f5b2acf6d8->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../twig/twig/src/Extension/CoreExtension.php:1527 Twig\TemplateWrapper->render()
+  ...ates/d5/d574d754933bedcb77219421cf81a244.php:88 Twig\Extension\CoreExtension::include()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_965b8c5a9ee8d92a5e5f65c3174912b3->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/TemplateWrapper.php:61      Twig\Template->display()
+  .../Glpi/Application/View/TemplateRenderer.php:188 Twig\TemplateWrapper->display()
+  ./install/install.php:150                          Glpi\Application\View\TemplateRenderer->display()
+  ./install/install.php:537                          step1()
+  ...Glpi/Controller/LegacyFileLoadController.php:64 require()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\LegacyFileLoadController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
