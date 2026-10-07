@@ -28,6 +28,8 @@ RUN apt-get update \
 
 FROM glpi-base AS build
 
+ENV npm_config_legacy_peer_deps=true
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential gettext git patch python3 unzip \
     && rm -rf /var/lib/apt/lists/*
@@ -37,6 +39,8 @@ COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY --from=node /usr/local/bin/npm /usr/local/bin/npm
 COPY --from=node /usr/local/bin/npx /usr/local/bin/npx
 COPY --from=node /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/npm
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+    && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 WORKDIR /var/www/glpi
 COPY . .

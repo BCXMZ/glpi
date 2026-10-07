@@ -1,0 +1,4 @@
+.env
+.env.*
+/config/config_db.php
+/config/glpicrypt.key
