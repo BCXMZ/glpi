@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'glpi/glpi',
-        'pretty_version' => 'dev-11.0/bugfixes',
-        'version' => 'dev-11.0/bugfixes',
-        'reference' => '2a44dd1527a1f70da48d6b484bcb7a8849a6e5fb',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '4f7e685e750b67ee03d93cf83b8717e540619258',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -383,9 +383,9 @@
             'dev_requirement' => true,
         ),
         'glpi/glpi' => array(
-            'pretty_version' => 'dev-11.0/bugfixes',
-            'version' => 'dev-11.0/bugfixes',
-            'reference' => '2a44dd1527a1f70da48d6b484bcb7a8849a6e5fb',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '4f7e685e750b67ee03d93cf83b8717e540619258',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

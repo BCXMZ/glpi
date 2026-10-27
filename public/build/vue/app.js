@@ -6132,12 +6132,12 @@ const publicPropertiesMap = (
     $root: (i) => getPublicInstance(i.root),
     $host: (i) => i.ce,
     $emit: (i) => i.emit,
-    $options: (i) =>  false ? 0 : i.type,
+    $options: (i) =>  true ? resolveMergedOptions(i) : 0,
     $forceUpdate: (i) => i.f || (i.f = () => {
       queueJob(i.update);
     }),
     $nextTick: (i) => i.n || (i.n = nextTick.bind(i.proxy)),
-    $watch: (i) =>  false ? 0 : _vue_shared__WEBPACK_IMPORTED_MODULE_1__.NOOP
+    $watch: (i) =>  true ? instanceWatch.bind(i) : 0
   })
 );
 const isReservedPrefix = (key) => key === "_" || key === "$";
@@ -6167,14 +6167,16 @@ const PublicInstanceProxyHandlers = {
       } else if (hasSetupBinding(setupState, key)) {
         accessCache[key] = 1 /* SETUP */;
         return setupState[key];
-      } else if (false) // removed by dead control flow
-{} else if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(props, key)) {
+      } else if ( true && data !== _vue_shared__WEBPACK_IMPORTED_MODULE_1__.EMPTY_OBJ && (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(data, key)) {
+        accessCache[key] = 2 /* DATA */;
+        return data[key];
+      } else if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(props, key)) {
         accessCache[key] = 3 /* PROPS */;
         return props[key];
       } else if (ctx !== _vue_shared__WEBPACK_IMPORTED_MODULE_1__.EMPTY_OBJ && (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(ctx, key)) {
         accessCache[key] = 4 /* CONTEXT */;
         return ctx[key];
-      } else if (true) {
+      } else if ( false || shouldCacheAccess) {
         accessCache[key] = 0 /* OTHER */;
       }
     }
@@ -6227,8 +6229,10 @@ const PublicInstanceProxyHandlers = {
     } else if (!!(process.env.NODE_ENV !== "production") && setupState.__isScriptSetup && (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(setupState, key)) {
       warn$1(`Cannot mutate <script setup> binding "${key}" from Options API.`);
       return false;
-    } else if (false) // removed by dead control flow
-{} else if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(instance.props, key)) {
+    } else if ( true && data !== _vue_shared__WEBPACK_IMPORTED_MODULE_1__.EMPTY_OBJ && (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(data, key)) {
+      data[key] = value;
+      return true;
+    } else if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(instance.props, key)) {
       !!(process.env.NODE_ENV !== "production") && warn$1(`Attempting to mutate prop "${key}". Props are readonly.`);
       return false;
     }
@@ -6254,7 +6258,7 @@ const PublicInstanceProxyHandlers = {
     _: { data, setupState, accessCache, ctx, appContext, props, type }
   }, key) {
     let cssModules;
-    return !!(accessCache[key] ||  false && 0 || hasSetupBinding(setupState, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(props, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(ctx, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(publicPropertiesMap, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(appContext.config.globalProperties, key) || (cssModules = type.__cssModules) && cssModules[key]);
+    return !!(accessCache[key] ||  true && data !== _vue_shared__WEBPACK_IMPORTED_MODULE_1__.EMPTY_OBJ && key[0] !== "$" && (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(data, key) || hasSetupBinding(setupState, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(props, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(ctx, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(publicPropertiesMap, key) || (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.hasOwn)(appContext.config.globalProperties, key) || (cssModules = type.__cssModules) && cssModules[key]);
   },
   defineProperty(target, key, descriptor) {
     if (descriptor.get != null) {
@@ -6979,10 +6983,16 @@ function createAppAPI(render, hydrate) {
         return app;
       },
       mixin(mixin) {
-        if (false) // removed by dead control flow
-{} else if (!!(process.env.NODE_ENV !== "production")) {
-          warn$1("Mixins are only available in builds supporting Options API");
-        }
+        if (true) {
+          if (!context.mixins.includes(mixin)) {
+            context.mixins.push(mixin);
+          } else if (!!(process.env.NODE_ENV !== "production")) {
+            warn$1(
+              "Mixin has already been applied to target app" + (mixin.name ? `: ${mixin.name}` : "")
+            );
+          }
+        } else // removed by dead control flow
+{}
         return app;
       },
       component(name, component) {
@@ -7269,7 +7279,7 @@ function emit(instance, event, ...rawArgs) {
 }
 const mixinEmitsCache = /* @__PURE__ */ new WeakMap();
 function normalizeEmitsOptions(comp, appContext, asMixin = false) {
-  const cache =  false ? 0 : appContext.emitsCache;
+  const cache =  true && asMixin ? mixinEmitsCache : appContext.emitsCache;
   const cached = cache.get(comp);
   if (cached !== void 0) {
     return cached;
@@ -7277,8 +7287,24 @@ function normalizeEmitsOptions(comp, appContext, asMixin = false) {
   const raw = comp.emits;
   let normalized = {};
   let hasExtends = false;
-  if (false) // removed by dead control flow
-{}
+  if ( true && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
+    const extendEmits = (raw2) => {
+      const normalizedFromExtend = normalizeEmitsOptions(raw2, appContext, true);
+      if (normalizedFromExtend) {
+        hasExtends = true;
+        (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.extend)(normalized, normalizedFromExtend);
+      }
+    };
+    if (!asMixin && appContext.mixins.length) {
+      appContext.mixins.forEach(extendEmits);
+    }
+    if (comp.extends) {
+      extendEmits(comp.extends);
+    }
+    if (comp.mixins) {
+      comp.mixins.forEach(extendEmits);
+    }
+  }
   if (!raw && !hasExtends) {
     if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isObject)(comp)) {
       cache.set(comp, null);
@@ -7812,7 +7838,7 @@ function resolvePropValue(options, props, key, value, instance, isAbsent) {
 }
 const mixinPropsCache = /* @__PURE__ */ new WeakMap();
 function normalizePropsOptions(comp, appContext, asMixin = false) {
-  const cache =  false ? 0 : appContext.propsCache;
+  const cache =  true && asMixin ? mixinPropsCache : appContext.propsCache;
   const cached = cache.get(comp);
   if (cached) {
     return cached;
@@ -7821,8 +7847,23 @@ function normalizePropsOptions(comp, appContext, asMixin = false) {
   const normalized = {};
   const needCastKeys = [];
   let hasExtends = false;
-  if (false) // removed by dead control flow
-{}
+  if ( true && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
+    const extendProps = (raw2) => {
+      hasExtends = true;
+      const [props, keys] = normalizePropsOptions(raw2, appContext, true);
+      (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.extend)(normalized, props);
+      if (keys) needCastKeys.push(...keys);
+    };
+    if (!asMixin && appContext.mixins.length) {
+      appContext.mixins.forEach(extendProps);
+    }
+    if (comp.extends) {
+      extendProps(comp.extends);
+    }
+    if (comp.mixins) {
+      comp.mixins.forEach(extendProps);
+    }
+  }
   if (!raw && !hasExtends) {
     if ((0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isObject)(comp)) {
       cache.set(comp, _vue_shared__WEBPACK_IMPORTED_MODULE_1__.EMPTY_ARR);
@@ -11021,7 +11062,7 @@ function finishComponentSetup(instance, isSSR, skipOptions) {
   const Component = instance.type;
   if (!instance.render) {
     if (!isSSR && compile && !Component.render) {
-      const template = Component.template ||  false && 0;
+      const template = Component.template ||  true && resolveMergedOptions(instance).template;
       if (template) {
         if (!!(process.env.NODE_ENV !== "production")) {
           startMeasure(instance, `compile`);
@@ -11049,8 +11090,16 @@ function finishComponentSetup(instance, isSSR, skipOptions) {
       installWithProxy(instance);
     }
   }
-  if (false) // removed by dead control flow
-{}
+  if (true) {
+    const reset = setCurrentInstance(instance);
+    (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_0__.pauseTracking)();
+    try {
+      applyOptions(instance);
+    } finally {
+      (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_0__.resetTracking)();
+      reset();
+    }
+  }
   if (!!(process.env.NODE_ENV !== "production") && !Component.render && instance.render === _vue_shared__WEBPACK_IMPORTED_MODULE_1__.NOOP && !isSSR) {
     if (!compile && Component.template) {
       warn$1(
