@@ -23,7 +23,7 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">Glpi_Kernel_KernelProductionDebugContainer</parameter>
-    <parameter key="glpi.default_secret">d8a0bfe7b4692dcb0617d01cecf80d975086a13f2803810cd5f4ca81d12031a0</parameter>
+    <parameter key="glpi.default_secret">a64ee80f4dd5733bd01353338f3e5805da4127c57b36a3d14f99692bfe8b6a4a</parameter>
     <parameter key="env(APP_SECRET_FILE)">/Users/alvarozuculajunior/BCX/glpi/config/glpicrypt.key</parameter>
     <parameter key="kernel.secret">%env(default:glpi.default_secret:file:APP_SECRET_FILE)%</parameter>
     <parameter key="debug.error_handler.throw_at">4437</parameter>

@@ -4,3 +4,37 @@
 [login] 3: glpi login from IP 127.0.0.1
 2026-10-26 20:34:56 [@Alvaros-MacBook-Pro.local]
 [login] 3: glpi login from IP ::1
+2026-10-28 09:16:37 [@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi log in from IP ::1
+2026-10-28 10:02:02 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 7] 3: Plugin ST-Custom Login has been installed by glpi (2).
+2026-10-28 10:02:07 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 8] 3: Plugin ST-Custom Login has been activated by glpi (2).
+2026-10-28 10:09:17 [@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-10-28 10:27:38 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 10] 3: Plugin Entities portal has been installed by glpi (2).
+2026-10-28 10:27:42 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 11] 3: Plugin Entities portal has been activated by glpi (2).
+2026-10-28 10:27:49 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 12] 3: Plugin trademark cleaned!
+2026-10-28 10:44:39 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 13] 3: Plugin Branding has been installed by glpi (2).
+2026-10-28 10:44:43 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 14] 3: Plugin Branding has been activated by glpi (2).
+2026-10-28 10:54:22 [@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-10-28 12:55:06 [@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-10-28 12:55:38 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 2] 3: Plugin Entities portal has been installed by glpi (2).
+2026-10-28 12:55:41 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 3] 3: Plugin Entities portal has been activated by glpi (2).
+2026-10-28 12:55:44 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 4] 3: Plugin ST-Custom Login has been installed by glpi (2).
+2026-10-28 12:55:48 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 5] 3: Plugin ST-Custom Login has been activated by glpi (2).
+2026-10-28 12:55:55 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 6] 3: Plugin Branding has been installed by glpi (2).
+2026-10-28 12:55:59 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
+[setup] [Plugin 7] 3: Plugin Branding has been activated by glpi (2).

@@ -1,0 +1,823 @@
+/**
+ * ST-Custom Login 2.2.1
+ * Scoped styles for GLPI 10 and GLPI 11.
+ */
+
+:root {
+    --stcl-primary-color: #206bc4;
+    --stcl-background-overlay: 0.18;
+    --stcl-card-width: 480px;
+    --stcl-login-logo-width: 180px;
+    --stcl-login-logo-height: 100px;
+    --stcl-navbar-logo-width: 150px;
+    --stcl-navbar-logo-height: 42px;
+    --stcl-navbar-logo-collapsed-width: 42px;
+    --stcl-navbar-logo-collapsed-height: 42px;
+    --stcl-login-background-image: none;
+    --stcl-navbar-logo-image: none;
+    --stcl-navbar-logo-collapsed-image: none;
+
+    /* Default sidebar palette. It is overridden by the selected preset. */
+    --stcl-sidebar-bg: #333333;
+    --stcl-sidebar-bg-dark: #292929;
+    --stcl-sidebar-bg-darker: #242424;
+    --stcl-sidebar-text: #f4f6fa;
+    --stcl-sidebar-muted: #c9c9c9;
+    --stcl-sidebar-accent: #f4b62c;
+    --stcl-sidebar-radius: 11px;
+}
+
+/* -------------------------------------------------------------------------
+   Login background and layout
+   ------------------------------------------------------------------------- */
+
+html.stcl-enabled.stcl-login-enabled.stcl-login-background-custom body.welcome-anonymous {
+    min-height: 100vh;
+    background-color: #101828 !important;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, var(--stcl-background-overlay)),
+            rgba(0, 0, 0, var(--stcl-background-overlay))
+        ),
+        var(--stcl-login-background-image) !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+html.stcl-enabled.stcl-login-enabled body.welcome-anonymous .page-anonymous {
+    min-height: 100vh;
+    width: 100%;
+}
+
+html.stcl-enabled.stcl-login-enabled body.welcome-anonymous .page-anonymous .container-tight {
+    width: min(calc(100% - 2rem), var(--stcl-card-width)) !important;
+    max-width: var(--stcl-card-width) !important;
+    transition: margin 0.2s ease, transform 0.2s ease;
+}
+
+html.stcl-enabled.stcl-login-enabled.stcl-login-align-center body.welcome-anonymous
+.page-anonymous .container-tight {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+html.stcl-enabled.stcl-login-enabled.stcl-login-align-left body.welcome-anonymous
+.page-anonymous .container-tight {
+    margin-right: auto !important;
+    margin-left: clamp(1rem, 4vw, 5rem) !important;
+}
+
+html.stcl-enabled.stcl-login-enabled.stcl-login-align-right body.welcome-anonymous
+.page-anonymous .container-tight {
+    margin-right: clamp(1rem, 4vw, 5rem) !important;
+    margin-left: auto !important;
+}
+
+/* The native GLPI logo is outside the white card in GLPI 10 and GLPI 11.
+   It is hidden only when the plugin has created its own logo inside the card. */
+html.stcl-enabled.stcl-login-enabled.stcl-login-logo-custom body.welcome-anonymous
+.page-anonymous .glpi-logo.stcl-native-login-logo-hidden {
+    display: none !important;
+}
+
+.stcl-login-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 1.5rem;
+    text-align: center;
+}
+
+.stcl-login-logo {
+    display: block;
+    width: var(--stcl-login-logo-width);
+    height: var(--stcl-login-logo-height);
+    max-width: 100%;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+    object-position: center;
+}
+
+html.stcl-enabled.stcl-login-enabled body.welcome-anonymous .btn-primary {
+    --tblr-btn-bg: var(--stcl-primary-color);
+    --tblr-btn-border-color: var(--stcl-primary-color);
+    --tblr-btn-hover-bg: color-mix(in srgb, var(--stcl-primary-color) 88%, black);
+    --tblr-btn-hover-border-color: color-mix(in srgb, var(--stcl-primary-color) 88%, black);
+    background-color: var(--stcl-primary-color) !important;
+    border-color: var(--stcl-primary-color) !important;
+}
+
+html.stcl-enabled.stcl-login-enabled body.welcome-anonymous .form-control:focus,
+html.stcl-enabled.stcl-login-enabled body.welcome-anonymous .form-select:focus {
+    border-color: var(--stcl-primary-color) !important;
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--stcl-primary-color) 25%, transparent) !important;
+}
+
+.stcl-login-heading {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.stcl-login-title {
+    margin: 0;
+    color: var(--tblr-body-color, #182433);
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.stcl-login-subtitle {
+    margin: 0.5rem 0 0;
+    color: var(--tblr-secondary-color, #667085);
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.stcl-login-prompt-hidden {
+    display: none !important;
+}
+
+.stcl-login-footer {
+    width: 100%;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1rem;
+    color: var(--tblr-secondary-color, #667085);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+html.stcl-enabled.stcl-login-enabled.stcl-login-background-custom .stcl-login-footer {
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* -------------------------------------------------------------------------
+   Internal logos
+   ------------------------------------------------------------------------- */
+
+html.stcl-enabled.stcl-internal-enabled.stcl-navbar-logo-custom
+body:not(.welcome-anonymous) .navbar-brand .glpi-logo {
+    --logo: none !important;
+    content: none !important;
+    display: block !important;
+    width: var(--stcl-navbar-logo-width) !important;
+    height: var(--stcl-navbar-logo-height) !important;
+    max-width: 100% !important;
+    background: var(--stcl-navbar-logo-image) center / contain no-repeat !important;
+}
+
+html.stcl-enabled.stcl-internal-enabled.stcl-navbar-logo-collapsed-custom
+body.navbar-collapsed.vertical-layout:not(.welcome-anonymous)
+aside.sidebar .navbar-brand .glpi-logo {
+    --logo: none !important;
+    content: none !important;
+    display: block !important;
+    width: var(--stcl-navbar-logo-collapsed-width) !important;
+    height: var(--stcl-navbar-logo-collapsed-height) !important;
+    max-width: 100% !important;
+    background: var(--stcl-navbar-logo-collapsed-image) center / contain no-repeat !important;
+}
+
+/* -------------------------------------------------------------------------
+   Sidebar effect presets
+   The Service TIC preset is based on the supplied GLPI 11 sidebar CSS.
+   ------------------------------------------------------------------------- */
+
+html.stcl-sidebar-theme-service-tic {
+    --stcl-sidebar-bg: #333333;
+    --stcl-sidebar-bg-dark: #292929;
+    --stcl-sidebar-bg-darker: #242424;
+    --stcl-sidebar-text: #f4f6fa;
+    --stcl-sidebar-muted: #c9c9c9;
+    --stcl-sidebar-accent: #f4b62c;
+    --stcl-sidebar-radius: 11px;
+}
+
+html.stcl-sidebar-theme-ocean {
+    --stcl-sidebar-bg: #24334f;
+    --stcl-sidebar-bg-dark: #1b2840;
+    --stcl-sidebar-bg-darker: #141f33;
+    --stcl-sidebar-text: #f5f8ff;
+    --stcl-sidebar-muted: #c6d3ea;
+    --stcl-sidebar-accent: #3b82f6;
+    --stcl-sidebar-radius: 11px;
+}
+
+html.stcl-sidebar-theme-emerald {
+    --stcl-sidebar-bg: #243a33;
+    --stcl-sidebar-bg-dark: #1b3029;
+    --stcl-sidebar-bg-darker: #14261f;
+    --stcl-sidebar-text: #f2fff9;
+    --stcl-sidebar-muted: #c4d9cf;
+    --stcl-sidebar-accent: #2dd4a3;
+    --stcl-sidebar-radius: 11px;
+}
+
+html.stcl-sidebar-theme-violet {
+    --stcl-sidebar-bg: #342d48;
+    --stcl-sidebar-bg-dark: #29223b;
+    --stcl-sidebar-bg-darker: #211a31;
+    --stcl-sidebar-text: #fbf8ff;
+    --stcl-sidebar-muted: #d8cfea;
+    --stcl-sidebar-accent: #a78bfa;
+    --stcl-sidebar-radius: 13px;
+}
+
+html.stcl-sidebar-theme-cyan {
+    --stcl-sidebar-bg: #203940;
+    --stcl-sidebar-bg-dark: #172e35;
+    --stcl-sidebar-bg-darker: #10252b;
+    --stcl-sidebar-text: #f2fdff;
+    --stcl-sidebar-muted: #c3dce2;
+    --stcl-sidebar-accent: #22d3ee;
+    --stcl-sidebar-radius: 11px;
+}
+
+html.stcl-sidebar-theme-ruby {
+    --stcl-sidebar-bg: #3d2b30;
+    --stcl-sidebar-bg-dark: #322126;
+    --stcl-sidebar-bg-darker: #28191d;
+    --stcl-sidebar-text: #fff8fa;
+    --stcl-sidebar-muted: #dfc9cf;
+    --stcl-sidebar-accent: #fb7185;
+    --stcl-sidebar-radius: 11px;
+}
+
+html.stcl-sidebar-theme-graphite {
+    --stcl-sidebar-bg: #35393e;
+    --stcl-sidebar-bg-dark: #2b2f34;
+    --stcl-sidebar-bg-darker: #22262a;
+    --stcl-sidebar-text: #f7f7f8;
+    --stcl-sidebar-muted: #cfd2d5;
+    --stcl-sidebar-accent: #e5e7eb;
+    --stcl-sidebar-radius: 9px;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar {
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            color-mix(in srgb, var(--stcl-sidebar-accent) 12%, transparent),
+            transparent 250px
+        ),
+        var(--stcl-sidebar-bg) !important;
+    color: var(--stcl-sidebar-text);
+    z-index: 1031;
+    box-shadow:
+        inset -1px 0 0 rgba(255, 255, 255, 0.035),
+        7px 0 24px rgba(0, 0, 0, 0.08) !important;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--stcl-sidebar-accent) 40%, transparent) transparent;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar #navbar-menu {
+    color: var(--stcl-sidebar-text);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link {
+    width: calc(100% - 16px) !important;
+    min-height: 41px;
+    margin: 2px 8px !important;
+    padding: 0.66rem 1rem !important;
+    border-left: 3px solid transparent !important;
+    border-radius: var(--stcl-sidebar-radius) !important;
+    color: color-mix(in srgb, var(--stcl-sidebar-text) 92%, transparent) !important;
+    background: transparent !important;
+    transition:
+        background-color 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link i {
+    color: color-mix(in srgb, var(--stcl-sidebar-text) 96%, transparent);
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item:not(.active) > .nav-link:hover {
+    background: rgba(255, 255, 255, 0.055) !important;
+    border-left-color: color-mix(in srgb, var(--stcl-sidebar-accent) 70%, transparent) !important;
+    color: #ffffff !important;
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link:hover i {
+    color: var(--stcl-sidebar-accent) !important;
+    transform: scale(1.05);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item.active > .nav-link,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link.show,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link.active {
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--stcl-sidebar-accent) 26%, transparent) 0%,
+            color-mix(in srgb, var(--stcl-sidebar-accent) 14%, transparent) 100%
+        ) !important;
+    color: var(--stcl-sidebar-accent) !important;
+    border-left-color: var(--stcl-sidebar-accent) !important;
+    border-radius: calc(var(--stcl-sidebar-radius) + 2px) !important;
+    font-weight: 700 !important;
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--stcl-sidebar-accent) 8%, transparent),
+        0 7px 18px rgba(0, 0, 0, 0.16);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item.active > .nav-link i,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link.show i,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link.active i {
+    color: var(--stcl-sidebar-accent) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-toggle::after {
+    color: var(--stcl-sidebar-accent);
+    opacity: 0.85;
+    transition: transform 0.2s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-toggle.show::after {
+    transform: rotate(180deg);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .nav-link.show + .dropdown-menu,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .nav-link.active + .dropdown-menu {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    width: calc(100% - 16px) !important;
+    margin: 5px 8px 9px !important;
+    padding: 6px !important;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.17), rgba(0, 0, 0, 0.27)),
+        var(--stcl-sidebar-bg-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.035) !important;
+    border-radius: calc(var(--stcl-sidebar-radius) + 1px) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025),
+        0 8px 20px rgba(0, 0, 0, 0.13) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-header {
+    display: none !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu-columns {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu-column {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    width: 100%;
+    margin: 2px 0 !important;
+    padding: 0.56rem 0.72rem !important;
+    color: var(--stcl-sidebar-muted) !important;
+    background: rgba(0, 0, 0, 0.10) !important;
+    border-left: 3px solid rgba(0, 0, 0, 0.45) !important;
+    border-radius: max(7px, calc(var(--stcl-sidebar-radius) - 2px)) !important;
+    transition:
+        background-color 0.16s ease,
+        background 0.16s ease,
+        color 0.16s ease,
+        border-color 0.16s ease,
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item i {
+    min-width: 22px;
+    margin-right: 0.35rem;
+    color: color-mix(in srgb, var(--stcl-sidebar-text) 84%, transparent);
+    transition: color 0.16s ease, transform 0.16s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item:hover {
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--stcl-sidebar-accent) 14%, transparent),
+            rgba(255, 255, 255, 0.025)
+        ) !important;
+    border-left-color: var(--stcl-sidebar-accent) !important;
+    color: #ffffff !important;
+    transform: translateX(3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item:hover i {
+    color: var(--stcl-sidebar-accent) !important;
+    transform: scale(1.06);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item.active {
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--stcl-sidebar-accent) 24%, transparent) 0%,
+            rgba(255, 255, 255, 0.045) 100%
+        ) !important;
+    border-left-color: var(--stcl-sidebar-accent) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--stcl-sidebar-accent) 6%, transparent),
+        0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item.active i,
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item.active .text-wrap {
+    color: var(--stcl-sidebar-accent) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item::after {
+    display: none !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar .reduce-menu {
+    border-radius: max(7px, calc(var(--stcl-sidebar-radius) - 2px));
+    color: color-mix(in srgb, var(--stcl-sidebar-text) 58%, transparent);
+    transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar .reduce-menu:hover {
+    color: var(--stcl-sidebar-accent);
+    background: color-mix(in srgb, var(--stcl-sidebar-accent) 16%, transparent);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--stcl-sidebar-accent) 38%, transparent);
+    border-radius: 10px;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout:not(.welcome-anonymous) .sidebar::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--stcl-sidebar-accent) 62%, transparent);
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link {
+    border-radius: max(7px, calc(var(--stcl-sidebar-radius) - 2px)) !important;
+    transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item:hover > .nav-link {
+    color: var(--stcl-sidebar-accent) !important;
+    background: color-mix(in srgb, var(--stcl-sidebar-accent) 16%, transparent) !important;
+    border-left-color: var(--stcl-sidebar-accent) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item:hover > .nav-link i {
+    color: var(--stcl-sidebar-accent) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item.active {
+    background: color-mix(in srgb, var(--stcl-sidebar-accent) 10%, transparent) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link + .dropdown-menu {
+    border: 1px solid color-mix(in srgb, var(--stcl-sidebar-accent) 20%, transparent) !important;
+    border-radius: max(8px, calc(var(--stcl-sidebar-radius) - 1px)) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22) !important;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+html.stcl-enabled.stcl-sidebar-effect-enabled
+body.vertical-layout.navbar-collapsed:not(.welcome-anonymous)
+.sidebar #navbar-menu .dropdown-menu .dropdown-item:hover {
+    border-left-color: var(--stcl-sidebar-accent) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Administration page
+   ------------------------------------------------------------------------- */
+
+.stcl-admin .page-header {
+    margin-block: 1rem 1.5rem;
+}
+
+.stcl-assets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.stcl-assets-grid-item {
+    display: flex;
+    min-width: 0;
+}
+
+.stcl-asset-card,
+.stcl-marketing-card {
+    width: 100%;
+    height: 100%;
+    min-height: 230px;
+    padding: 1rem;
+    border: 1px solid var(--tblr-border-color, #dce1e7);
+    border-radius: var(--tblr-border-radius, 0.375rem);
+    background: var(--tblr-bg-surface, #fff);
+}
+
+.stcl-asset-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.stcl-asset-card > .flex-fill {
+    min-width: 0;
+}
+
+.stcl-preview-box {
+    display: grid;
+    flex: 0 0 170px;
+    width: 170px;
+    height: 170px;
+    min-height: 170px;
+    align-self: flex-start;
+    place-items: center;
+    overflow: hidden;
+    border: 1px dashed var(--tblr-border-color, #dce1e7);
+    border-radius: 0.375rem;
+    background:
+        linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+    background-size: 16px 16px;
+}
+
+.stcl-image-preview {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.stcl-empty-preview {
+    padding: 1rem;
+    color: var(--tblr-secondary-color, #667085);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.stcl-marketing-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    background:
+        linear-gradient(135deg, rgba(32, 107, 196, 0.045), transparent 62%),
+        var(--tblr-bg-surface, #fff);
+    text-align: center;
+}
+
+.stcl-marketing-brand {
+    display: grid;
+    flex: 0 0 190px;
+    width: 190px;
+    height: 190px;
+    place-items: center;
+}
+
+.stcl-marketing-logo {
+    display: block;
+    width: 178px;
+    height: 178px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.stcl-marketing-details {
+    display: flex;
+    flex: 0 1 220px;
+    min-width: 165px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stcl-marketing-title {
+    margin-bottom: 0.25rem;
+    color: var(--tblr-body-color, #182433);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.stcl-marketing-site {
+    color: var(--tblr-primary, #206bc4);
+    font-size: 0.95rem;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.stcl-marketing-site:hover,
+.stcl-marketing-site:focus-visible {
+    text-decoration: underline;
+}
+
+.stcl-marketing-qr-link {
+    display: inline-flex;
+    margin-top: 0.75rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    outline-offset: 0.2rem;
+}
+
+.stcl-marketing-qr {
+    display: block;
+    width: 108px;
+    height: 110px;
+    object-fit: contain;
+}
+
+@media (max-width: 1199.98px) {
+    .stcl-assets-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 991.98px) {
+    html.stcl-enabled.stcl-sidebar-effect-enabled
+    body.vertical-layout:not(.welcome-anonymous) .sidebar {
+        box-shadow: 4px 0 18px rgba(0, 0, 0, 0.16) !important;
+    }
+
+    html.stcl-enabled.stcl-sidebar-effect-enabled
+    body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+    .sidebar #navbar-menu > .navbar-nav > .nav-item > .nav-link {
+        width: calc(100% - 10px) !important;
+        margin-right: 5px !important;
+        margin-left: 5px !important;
+    }
+
+    html.stcl-enabled.stcl-sidebar-effect-enabled
+    body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+    .sidebar #navbar-menu .nav-link.show + .dropdown-menu,
+    html.stcl-enabled.stcl-sidebar-effect-enabled
+    body.vertical-layout:not(.navbar-collapsed):not(.welcome-anonymous)
+    .sidebar #navbar-menu .nav-link.active + .dropdown-menu {
+        width: calc(100% - 10px) !important;
+        margin-right: 5px !important;
+        margin-left: 5px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    html.stcl-enabled.stcl-login-enabled.stcl-login-background-custom body.welcome-anonymous {
+        background-attachment: scroll !important;
+    }
+
+    html.stcl-enabled.stcl-login-enabled body.welcome-anonymous
+    .page-anonymous .container-tight {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .stcl-assets-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .stcl-asset-card,
+    .stcl-marketing-card {
+        min-height: 0;
+    }
+
+    .stcl-asset-card,
+    .stcl-marketing-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stcl-preview-box {
+        flex-basis: auto;
+        width: 100%;
+        height: 190px;
+        min-height: 190px;
+    }
+
+    .stcl-asset-card > .flex-fill,
+    .stcl-marketing-details {
+        width: 100%;
+    }
+
+    .stcl-marketing-brand {
+        flex-basis: auto;
+        width: 170px;
+        height: 170px;
+    }
+
+    .stcl-marketing-logo {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.stcl-enabled.stcl-login-enabled *,
+    html.stcl-enabled.stcl-internal-enabled *,
+    html.stcl-enabled.stcl-sidebar-effect-enabled * {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

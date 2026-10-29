@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <base href="https://glpi.example.test/">
+    <title>ST-Custom Login DOM compatibility test</title>
+    <style id="glpi-core-logo-fixture">
+        .page-anonymous .glpi-logo {
+            --logo: url("/native-glpi-logo.png");
+            content: var(--logo);
+            display: block;
+            width: 200px;
+            height: 110px;
+        }
+        .page .glpi-logo, .navbar-brand .glpi-logo {
+            background: url("/native-navbar-logo.png") no-repeat;
+            width: 100px;
+            height: 55px;
+        }
+    </style>
+    <link rel="icon" href="/native-favicon.ico">
+    <link rel="stylesheet" href="../css/customlogin.css">
+    <script type="application/json" id="st-customlogin-config">{"enabled":true,"login":{"enabled":true,"title":"Portal de Serviços","subtitle":"Entre com suas credenciais","promptEnabled":true,"promptText":"Acesse sua conta corporativa","footer":"Atendimento Service TIC","primaryColor":"#123456","backgroundOverlay":25,"alignment":"right","cardWidth":500,"logoWidth":190,"logoHeight":110,"backgroundUrl":"/background.webp","logoUrl":"/login-logo.webp"},"internal":{"enabled":true,"logoWidth":155,"logoHeight":44,"logoUrl":"/navbar-logo.webp","collapsedLogoWidth":46,"collapsedLogoHeight":46,"collapsedLogoUrl":"/navbar-logo-collapsed.webp","sidebarEffectEnabled":true,"sidebarEffectPreset":"service-tic"},"faviconUrl":"/favicon.png","faviconMime":"image/png"}</script>
+    <script src="../js/customlogin.js"></script>
+</head>
+<body>
+<script>
+(async () => {
+    'use strict';
+
+    const failures = [];
+    const passes = [];
+    const assert = (condition, message) => {
+        (condition ? passes : failures).push(message);
+    };
+    const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+    const config = {
+        enabled: true,
+        login: {
+            enabled: true,
+            title: 'Portal de Serviços',
+            subtitle: 'Entre com suas credenciais',
+            promptEnabled: true,
+            promptText: 'Acesse sua conta corporativa',
+            footer: 'Atendimento Service TIC',
+            primaryColor: '#123456',
+            backgroundOverlay: 25,
+            alignment: 'right',
+            cardWidth: 500,
+            logoWidth: 190,
+            logoHeight: 110,
+            backgroundUrl: '/background.webp',
+            logoUrl: '/login-logo.webp'
+        },
+        internal: {
+            enabled: true,
+            logoWidth: 155,
+            logoHeight: 44,
+            logoUrl: '/navbar-logo.webp',
+            collapsedLogoWidth: 46,
+            collapsedLogoHeight: 46,
+            collapsedLogoUrl: '/navbar-logo-collapsed.webp',
+            sidebarEffectEnabled: true,
+            sidebarEffectPreset: 'service-tic'
+        },
+        faviconUrl: '/favicon.png',
+        faviconMime: 'image/png'
+    };
+
+    const loginForm = `
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card-header mb-4"><h2 class="mx-auto">Faça login para sua conta</h2></div>
+                    <div class="mb-3"><input id="login_name"></div>
+                    <div class="mb-4"><input id="login_password"></div>
+                </div>
+            </div>
+        </form>`;
+
+    const fixtures = [
+        {
+            name: 'GLPI 10.0.26',
+            html: `<div class="page-anonymous"><div class="container-tight"><div class="text-center"><span class="glpi-logo mb-4"></span></div><div class="card"><div class="card-body">${loginForm}</div></div></div></div>`
+        },
+        {
+            name: 'GLPI 11.0.7',
+            html: `<div class="page-anonymous"><div class="container-tight"><div class="text-center"><span class="glpi-logo mb-4"></span></div><div class="card main-content-card"><div class="card-header"></div><div class="card-body">${loginForm}</div></div></div></div>`
+        },
+        {
+            name: 'GLPI 11.0.8',
+            html: `<a class="skip-links" href="#page">Pular</a><main id="page" class="page-anonymous"><div class="container-tight"><div class="text-center"><div class="col-md"><span class="glpi-logo mb-4"></span></div></div><div class="card main-content-card"><div class="card-header"></div><div class="card-body">${loginForm}</div></div></div></main>`
+        }
+    ];
+
+    for (const fixture of fixtures) {
+        document.body.className = 'welcome-anonymous';
+        document.body.innerHTML = fixture.html;
+
+        let error = null;
+        try {
+            window.STCustomLogin.applyConfig(config);
+            window.STCustomLogin.applyConfig(config);
+        } catch (caught) {
+            error = caught;
+        }
+
+        assert(error === null, `${fixture.name}: aplicação sem exceção`);
+        assert(document.querySelectorAll('#stcl-login-branding').length === 1, `${fixture.name}: bloco de marca único`);
+        assert(document.querySelectorAll('#stcl-login-logo').length === 1, `${fixture.name}: logotipo personalizado único`);
+        assert(document.querySelectorAll('#stcl-login-heading').length === 1, `${fixture.name}: título único e idempotente`);
+        assert(document.querySelectorAll('#stcl-login-footer').length === 1, `${fixture.name}: rodapé único e idempotente`);
+        assert(document.querySelector('#stcl-login-logo')?.closest('.card-body') !== null, `${fixture.name}: logo está dentro do quadro branco`);
+        assert(document.querySelector('#stcl-login-branding')?.firstElementChild?.id === 'stcl-login-logo', `${fixture.name}: logo vem antes dos textos personalizados`);
+        assert(document.querySelector('.stcl-login-title')?.textContent === config.login.title, `${fixture.name}: título correto`);
+        assert(document.querySelector('.stcl-login-subtitle')?.textContent === config.login.subtitle, `${fixture.name}: subtítulo correto`);
+        assert(document.querySelector('.card-header.mb-4 h2')?.textContent === config.login.promptText, `${fixture.name}: texto de autenticação renomeado`);
+        assert(document.documentElement.classList.contains('stcl-login-enabled'), `${fixture.name}: classe de login aplicada`);
+        assert(document.documentElement.classList.contains('stcl-login-align-right'), `${fixture.name}: painel alinhado à direita`);
+        assert(document.documentElement.classList.contains('stcl-sidebar-effect-enabled'), `${fixture.name}: efeito lateral carregado sem interferir no login`);
+        assert(document.documentElement.classList.contains('stcl-sidebar-theme-service-tic'), `${fixture.name}: tema Service TIC selecionado`);
+        assert(document.documentElement.dataset.stclLoginAlignment === 'right', `${fixture.name}: diagnóstico de alinhamento correto`);
+        assert(document.documentElement.dataset.stclSidebarPreset === 'service-tic', `${fixture.name}: diagnóstico do tema lateral correto`);
+        assert(document.documentElement.dataset.stclApplied === '1', `${fixture.name}: marcador de aplicação presente`);
+        assert(document.documentElement.dataset.stclVersion === '2.2.1', `${fixture.name}: marcador de versão correto`);
+        assert(document.documentElement.style.getPropertyValue('--stcl-card-width') === '500px', `${fixture.name}: variável CSS aplicada`);
+
+        const customLogo = document.querySelector('#stcl-login-logo');
+        const customLogoStyle = customLogo ? getComputedStyle(customLogo) : null;
+        const nativeLogo = document.querySelector('.page-anonymous .glpi-logo');
+        const nativeLogoStyle = nativeLogo ? getComputedStyle(nativeLogo) : null;
+        const bodyStyle = getComputedStyle(document.body);
+        assert(customLogo?.getAttribute('src')?.includes('login-logo.webp') === true, `${fixture.name}: logo remoto aplicado ao elemento interno`);
+        assert(customLogoStyle?.width === '190px', `${fixture.name}: largura personalizada do logo aplicada`);
+        assert(customLogoStyle?.height === '110px', `${fixture.name}: altura personalizada do logo aplicada`);
+        assert(customLogoStyle?.objectFit === 'contain', `${fixture.name}: proporção da logo preservada`);
+        assert(nativeLogo?.classList.contains('stcl-native-login-logo-hidden') === true, `${fixture.name}: logo nativo externo marcado para ocultação`);
+        assert(nativeLogoStyle?.display === 'none', `${fixture.name}: logo nativo externo ocultado`);
+        assert(bodyStyle.backgroundImage.includes('background.webp'), `${fixture.name}: plano de fundo personalizado aplicado`);
+
+        const hiddenPrompt = structuredClone(config);
+        hiddenPrompt.login.promptEnabled = false;
+        window.STCustomLogin.applyConfig(hiddenPrompt);
+        assert(document.querySelector('.card-header.mb-4')?.hidden === true, `${fixture.name}: texto de autenticação pode ser desativado`);
+        assert(getComputedStyle(document.querySelector('.card-header.mb-4')).display === 'none', `${fixture.name}: cabeçalho nativo não deixa espaço quando oculto`);
+
+        const nativePrompt = structuredClone(config);
+        nativePrompt.login.promptText = '';
+        window.STCustomLogin.applyConfig(nativePrompt);
+        assert(document.querySelector('.card-header.mb-4 h2')?.textContent === 'Faça login para sua conta', `${fixture.name}: texto nativo é restaurado quando o campo fica vazio`);
+    }
+
+    document.body.className = 'welcome-anonymous';
+    document.body.innerHTML = fixtures[2].html;
+
+    for (const alignment of ['left', 'center', 'right']) {
+        const aligned = structuredClone(config);
+        aligned.login.alignment = alignment;
+        window.STCustomLogin.applyConfig(aligned);
+        assert(
+            document.documentElement.classList.contains(`stcl-login-align-${alignment}`),
+            `Posição do login ${alignment}: classe selecionada aplicada`
+        );
+        assert(
+            ['left', 'center', 'right'].filter((value) =>
+                document.documentElement.classList.contains(`stcl-login-align-${value}`)
+            ).length === 1,
+            `Posição do login ${alignment}: somente uma classe de alinhamento permanece ativa`
+        );
+        assert(
+            document.documentElement.dataset.stclLoginAlignment === alignment,
+            `Posição do login ${alignment}: marcador de diagnóstico atualizado`
+        );
+    }
+
+    const internalDisabled = structuredClone(config);
+    internalDisabled.internal.enabled = false;
+    window.STCustomLogin.applyConfig(internalDisabled);
+    assert(!document.documentElement.classList.contains('stcl-internal-enabled'), 'Área interna desativada: classe interna removida');
+    assert(!document.documentElement.classList.contains('stcl-sidebar-effect-enabled'), 'Área interna desativada: efeito lateral não é aplicado');
+    assert(!document.documentElement.dataset.stclSidebarPreset, 'Área interna desativada: marcador do tema lateral é removido');
+
+    window.STCustomLogin.applyConfig(config);
+    await delay(50);
+
+    let lateMutations = 0;
+    const stabilityObserver = new MutationObserver(() => {
+        lateMutations += 1;
+    });
+    stabilityObserver.observe(document.body, { childList: true, subtree: true });
+    await delay(120);
+    const settledMutations = lateMutations;
+    await delay(120);
+    stabilityObserver.disconnect();
+    assert(lateMutations === settledMutations, 'MutationObserver: DOM estabiliza sem laço de reaplicação');
+
+    document.getElementById('stcl-login-branding')?.remove();
+    await delay(80);
+    assert(document.querySelectorAll('#stcl-login-branding').length === 1, 'MutationObserver: logo e textos são restaurados após atualização dinâmica do GLPI');
+
+    document.body.className = 'vertical-layout';
+    document.body.innerHTML = `
+        <aside class="sidebar">
+            <a class="navbar-brand"><span class="glpi-logo"></span></a>
+            <div id="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link show"><i></i><span>Administração</span></a>
+                        <div class="dropdown-menu show">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item active"><i></i><span class="text-wrap">Entidades</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="reduce-menu">Recolher</button>
+        </aside>`;
+    window.STCustomLogin.applyConfig(config);
+    assert(document.documentElement.classList.contains('stcl-internal-enabled'), 'Área interna: classe aplicada');
+    assert(document.documentElement.style.getPropertyValue('--stcl-navbar-logo-width') === '155px', 'Área interna: dimensão expandida aplicada');
+    assert(getComputedStyle(document.querySelector('.navbar-brand .glpi-logo')).backgroundImage.includes('navbar-logo.webp'), 'Área interna: logo expandido aplicado');
+    const sidebarStyle = getComputedStyle(document.querySelector('.sidebar'));
+    const activeMenuStyle = getComputedStyle(document.querySelector('.nav-item.active > .nav-link'));
+    const submenuStyle = getComputedStyle(document.querySelector('.dropdown-menu.show'));
+    const activeItemStyle = getComputedStyle(document.querySelector('.dropdown-item.active'));
+    assert(sidebarStyle.backgroundImage.includes('radial-gradient'), 'Área interna: efeito radial aplicado ao menu lateral');
+    assert(sidebarStyle.backgroundColor !== 'rgba(0, 0, 0, 0)', 'Área interna: fundo temático aplicado ao menu lateral');
+    assert(activeMenuStyle.borderLeftWidth === '3px', 'Área interna: item principal ativo recebe borda de destaque');
+    assert(activeMenuStyle.borderRadius === '13px', 'Área interna: item principal ativo recebe cantos arredondados');
+    assert(submenuStyle.position === 'static', 'Área interna: submenu expandido fica organizado no fluxo lateral');
+    assert(submenuStyle.borderRadius === '12px', 'Área interna: painel do submenu recebe efeito visual');
+    assert(activeItemStyle.borderLeftWidth === '3px', 'Área interna: item ativo do submenu recebe destaque');
+
+    document.body.classList.add('navbar-collapsed');
+    assert(getComputedStyle(document.querySelector('.navbar-brand .glpi-logo')).backgroundImage.includes('navbar-logo-collapsed.webp'), 'Área interna: logo recolhido aplicado');
+    assert(getComputedStyle(document.querySelector('.navbar-brand .glpi-logo')).width === '46px', 'Área interna: largura recolhida aplicada');
+    assert(getComputedStyle(document.querySelector('.navbar-brand .glpi-logo')).height === '46px', 'Área interna: altura recolhida aplicada');
+    assert(document.querySelectorAll('link[data-stcl-favicon="1"]').length === 2, 'Favicon: links compatíveis criados');
+    assert(Array.from(document.querySelectorAll('link[data-stcl-favicon="1"]')).every((link) => link.type === 'image/png'), 'Favicon: MIME configurado aplicado');
+    assert(document.querySelector('link[href$="/native-favicon.ico"]') !== null, 'Favicon: link nativo é preservado');
+    assert(document.querySelectorAll('.navbar-brand .glpi-logo').length === 1, 'Área interna: logotipo nativo é preservado');
+
+    const themeAccents = {
+        'service-tic': 'rgb(244, 182, 44)',
+        ocean: 'rgb(59, 130, 246)',
+        emerald: 'rgb(45, 212, 163)',
+        violet: 'rgb(167, 139, 250)',
+        cyan: 'rgb(34, 211, 238)',
+        ruby: 'rgb(251, 113, 133)',
+        graphite: 'rgb(229, 231, 235)'
+    };
+    for (const [preset, expectedAccent] of Object.entries(themeAccents)) {
+        const themed = structuredClone(config);
+        themed.internal.sidebarEffectPreset = preset;
+        window.STCustomLogin.applyConfig(themed);
+        assert(document.documentElement.classList.contains(`stcl-sidebar-theme-${preset}`), `Tema lateral ${preset}: classe aplicada`);
+        const probe = document.createElement('span');
+        probe.style.color = 'var(--stcl-sidebar-accent)';
+        document.body.append(probe);
+        assert(getComputedStyle(probe).color === expectedAccent, `Tema lateral ${preset}: cor de destaque aplicada`);
+        probe.remove();
+    }
+    window.STCustomLogin.applyConfig(config);
+
+    const noAssets = structuredClone(config);
+    noAssets.login.backgroundUrl = '';
+    noAssets.login.logoUrl = '';
+    noAssets.internal.logoUrl = '';
+    noAssets.internal.collapsedLogoUrl = '';
+    window.STCustomLogin.applyConfig(noAssets);
+    assert(!document.documentElement.classList.contains('stcl-login-background-custom'), 'Sem fundo personalizado: fundo nativo permanece disponível');
+    assert(!document.documentElement.classList.contains('stcl-login-logo-custom'), 'Sem logo de login: logo nativo permanece disponível');
+    assert(!document.documentElement.classList.contains('stcl-navbar-logo-custom'), 'Sem logo interno: logo nativo permanece disponível');
+    assert(!document.documentElement.classList.contains('stcl-navbar-logo-collapsed-custom'), 'Sem logo recolhido: estado nativo permanece disponível');
+    assert(document.querySelectorAll('.navbar-brand .glpi-logo').length === 1, 'Sem ativos: nenhum nó nativo é removido');
+
+    document.body.className = 'welcome-anonymous';
+    document.body.innerHTML = fixtures[2].html;
+    window.STCustomLogin.applyConfig(config);
+    window.STCustomLogin.applyConfig({ ...config, enabled: false });
+    assert(!document.documentElement.classList.contains('stcl-enabled'), 'Desativação remove a classe geral');
+    assert(!document.documentElement.classList.contains('stcl-login-align-right'), 'Desativação remove a classe de alinhamento');
+    assert(!document.documentElement.classList.contains('stcl-sidebar-effect-enabled'), 'Desativação remove a classe do efeito lateral');
+    assert(!document.documentElement.classList.contains('stcl-sidebar-theme-service-tic'), 'Desativação remove a classe do tema lateral');
+    assert(!document.querySelector('#stcl-login-branding'), 'Desativação remove a marca criada pelo plugin');
+    assert(!document.querySelector('link[data-stcl-favicon="1"]'), 'Desativação remove apenas os favicons criados pelo plugin');
+    assert(document.querySelector('.page-anonymous .glpi-logo')?.classList.contains('stcl-native-login-logo-hidden') === false, 'Desativação restaura o logo nativo externo');
+    assert(document.querySelector('.card-header.mb-4 h2')?.textContent === 'Faça login para sua conta', 'Desativação restaura o texto nativo do GLPI');
+
+    const normalized = window.STCustomLogin.normalizeConfig({
+        login: {
+            cardWidth: 9999,
+            primaryColor: 'javascript:alert(1)',
+            alignment: 'diagonal'
+        },
+        internal: {
+            collapsedLogoWidth: 9999,
+            sidebarEffectEnabled: true,
+            sidebarEffectPreset: 'unknown'
+        },
+        faviconMime: 'text/html'
+    });
+    assert(normalized.login.cardWidth === 760, 'Normalização JS: largura limitada ao máximo');
+    assert(normalized.login.primaryColor === '#206bc4', 'Normalização JS: cor inválida rejeitada');
+    assert(normalized.login.alignment === 'center', 'Normalização JS: alinhamento inválido volta ao centro');
+    assert(normalized.internal.collapsedLogoWidth === 120, 'Normalização JS: largura recolhida limitada');
+    assert(normalized.internal.sidebarEffectEnabled === true, 'Normalização JS: efeito lateral booleano preservado');
+    assert(normalized.internal.sidebarEffectPreset === 'service-tic', 'Normalização JS: tema lateral inválido volta ao padrão');
+    assert(normalized.faviconMime === '', 'Normalização JS: MIME de favicon inválido rejeitado');
+
+    const unsafeUrls = window.STCustomLogin.normalizeConfig({
+        login: { backgroundUrl: 'javascript:alert(1)' },
+        internal: {
+            logoUrl: 'https://example.invalid/logo.png',
+            collapsedLogoUrl: 'data:image/png;base64,AAAA'
+        }
+    });
+    assert(unsafeUrls.login.backgroundUrl === '', 'Normalização JS: protocolo ativo é rejeitado');
+    assert(unsafeUrls.internal.logoUrl === '', 'Normalização JS: ativo de origem externa é rejeitado');
+    assert(unsafeUrls.internal.collapsedLogoUrl === '', 'Normalização JS: data URL de logo recolhido é rejeitada');
+
+    document.body.className = 'welcome-anonymous';
+    document.body.innerHTML = '<div class="sem-ancora"></div>';
+    let missingAnchorError = null;
+    try {
+        window.STCustomLogin.applyConfig(config);
+    } catch (caught) {
+        missingAnchorError = caught;
+    }
+    assert(missingAnchorError === null, 'DOM sem âncora: falha segura, sem exceção');
+
+    document.body.className = '';
+    document.body.innerHTML = '';
+    const result = document.createElement('pre');
+    result.id = 'test-result';
+    result.dataset.tests = failures.length === 0 ? 'passed' : 'failed';
+    result.textContent = JSON.stringify({ passes, failures }, null, 2);
+    document.body.append(result);
+})();
+</script>
+</body>
+</html>

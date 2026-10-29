@@ -1967,10 +1967,9 @@ class Entity extends CommonTreeDropdown implements
             return false;
         }
 
-        // Notification right applied
         $canedit = Session::haveAccessToEntity($ID);
         $enable_css_options = [];
-        if (($ID > 0) ? 1 : 0) {
+        if ($ID > 0) {
             $enable_css_options[self::CONFIG_PARENT] = __('Inherits configuration from the parent entity');
         }
         $enable_css_options[0] = __('No');
@@ -1979,17 +1978,18 @@ class Entity extends CommonTreeDropdown implements
         $enable_css_inheritance_label = null;
         $inherited_css = null;
         $inherited_value = null;
-        if ($entity->fields['enable_custom_css'] === self::CONFIG_PARENT) {
-            $inherited_strategy = self::getUsedConfig('enable_custom_css', $entity->fields['entities_id']);
-            $inherited_value = $inherited_strategy === 0
-                ? self::getUsedConfig('enable_custom_css', $entity->fields['entities_id'], 'enable_custom_css')
-                : $inherited_strategy;
-            $enable_css_inheritance_label = self::inheritedValue(
-                self::getSpecificValueToDisplay('enable_custom_css', $inherited_value),
-                false,
-                false
-            );
+        if ($ID > 0) {
+            // Also load the parent configuration when inheritance is not selected,
+            // so switching to it does not require saving and reloading the tab.
+            $inherited_value = self::getUsedConfig('enable_custom_css', $entity->fields['entities_id']);
             $inherited_css = self::getUsedConfig('enable_custom_css', $entity->fields['entities_id'], 'custom_css_code');
+            if ($entity->fields['enable_custom_css'] === self::CONFIG_PARENT) {
+                $enable_css_inheritance_label = self::inheritedValue(
+                    self::getSpecificValueToDisplay('enable_custom_css', $inherited_value),
+                    false,
+                    false
+                );
+            }
         }
 
         TemplateRenderer::getInstance()->display('pages/admin/entity/custom_ui.html.twig', [

@@ -1,0 +1,19 @@
+{
+    "name": "serviceticst/glpi-customlogin",
+    "description": "ST-Custom Login: branding do login, fundo 16:9, alinhamento do painel, logos internas, favicon, marketing administrativo e sete efeitos de menu lateral para GLPI 10 e GLPI 11.",
+    "type": "glpi-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.3",
+        "ext-fileinfo": "*"
+    },
+    "support": {
+        "issues": "https://github.com/serviceticst/glpi-plugin-custom_login/issues",
+        "source": "https://github.com/serviceticst/glpi-plugin-custom_login"
+    },
+    "scripts": {
+        "test": [
+            "@php tests/validate.php"
+        ]
+    }
+}

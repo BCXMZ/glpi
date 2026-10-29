@@ -928,6 +928,57 @@ class EntityTest extends DbTestCase
         $this->assertSame($expected, $entity->getCustomCssTag());
     }
 
+    public static function uiCustomizationProvider(): iterable
+    {
+        yield 'enabled with disabled parent' => [1, 0, true];
+        yield 'disabled with enabled parent' => [0, 1, false];
+        yield 'enabled with enabled parent' => [1, 1, true];
+        yield 'inherit enabled parent' => [Entity::CONFIG_PARENT, 1, true];
+        yield 'inherit disabled parent' => [Entity::CONFIG_PARENT, 0, false];
+    }
+
+    #[DataProvider('uiCustomizationProvider')]
+    public function testUiCustomizationOptions(int $mode, int $parent_mode, bool $editor_visible): void
+    {
+        $this->login();
+        $parent = getItemByTypeName(Entity::class, '_test_root_entity');
+        $entity = getItemByTypeName(Entity::class, '_test_child_1');
+        $this->assertTrue($parent->update([
+            'id' => $parent->getID(),
+            'enable_custom_css' => $parent_mode,
+            'custom_css_code' => 'body { color: red; }',
+        ]));
+        $this->assertTrue($entity->update([
+            'id' => $entity->getID(),
+            'enable_custom_css' => $mode,
+            'custom_css_code' => 'body { color: blue; }',
+        ]));
+
+        ob_start();
+        try {
+            $displayed = Entity::showUiCustomizationOptions($entity);
+        } finally {
+            $html = ob_get_clean();
+        }
+        $this->assertTrue($displayed);
+        $crawler = new Crawler($html);
+        $select = $crawler->filter('select[name="enable_custom_css"]');
+        $this->assertCount(1, $select);
+        $this->assertSame((string) $mode, $select->filter('option[selected]')->attr('value'));
+        $this->assertSame(
+            !$editor_visible,
+            str_contains($crawler->filter('#custom_css_container')->attr('class'), 'd-none')
+        );
+        $this->assertSame(
+            $editor_visible,
+            str_contains($crawler->filter('[data-custom-css-disabled]')->attr('class'), 'd-none')
+        );
+        $this->assertStringContainsString(
+            'inheritedEnabled: ' . ($parent_mode === 1 ? 'true' : 'false'),
+            $html
+        );
+    }
+
     public static function anonymizeSettingProvider(): array
     {
         return [
