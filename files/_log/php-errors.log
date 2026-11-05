@@ -2870,3 +2870,55 @@ Stack trace:
 
 [2026-10-28 12:45:47] glpi.WARNING:   *** Test logger
 [2026-10-28 12:46:08] glpi.WARNING:   *** Test logger
+[2026-11-01 15:10:24] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-01 18:23:47] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-02 20:03:04] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-02 20:27:12] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+

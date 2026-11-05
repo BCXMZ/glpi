@@ -3,8 +3,11 @@ FROM node:22-bookworm-slim AS node
 
 FROM php:8.4-apache AS glpi-base
 
+ENV TZ=Africa/Maputo
+
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        cron \
         libavif-dev \
         libcurl4-openssl-dev \
         libfreetype6-dev \
@@ -17,6 +20,10 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
+        tzdata \
+    && ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime \
+    && printf '%s\n' "$TZ" > /etc/timezone \
+    && printf 'date.timezone = %s\n' "$TZ" > "$PHP_INI_DIR/conf.d/timezone.ini" \
     && docker-php-ext-configure gd --with-avif --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-configure ldap --with-ldap-sasl \
     && docker-php-ext-install -j"$(nproc)" bcmath curl exif gd intl ldap mbstring mysqli opcache zip \
@@ -55,9 +62,13 @@ FROM glpi-base AS runtime
 WORKDIR /var/www/glpi
 COPY --from=build /var/www/glpi /var/www/glpi
 
-RUN mkdir -p config files marketplace plugins \
-    && chown -R www-data:www-data config files marketplace plugins
+RUN mkdir -p config files/_log marketplace plugins \
+    && chown -R www-data:www-data config files marketplace plugins \
+    && printf '%s\n' '* * * * * www-data cd /var/www/glpi && /usr/local/bin/php front/cron.php >> /var/www/glpi/files/_log/cron-runner.log 2>&1' > /etc/cron.d/glpi \
+    && chmod 0644 /etc/cron.d/glpi
 
 VOLUME ["/var/www/glpi/config", "/var/www/glpi/files", "/var/www/glpi/marketplace", "/var/www/glpi/plugins"]
 
 EXPOSE 80
+
+CMD ["sh", "-c", "cron && exec apache2-foreground"]
