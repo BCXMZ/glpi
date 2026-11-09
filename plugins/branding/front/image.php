@@ -16,6 +16,11 @@ require_once(__DIR__ . '/../inc/config.class.php');
 
 use function Safe\readfile;
 
+if (!Plugin::isPluginActive('branding')) {
+    http_response_code(404);
+    exit;
+}
+
 $field = $_GET['field'] ?? '';
 if (!in_array($field, ['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'], true)) {
     http_response_code(404);
@@ -34,21 +39,13 @@ if ($resolved === null) {
     exit;
 }
 
-$path = PluginBrandingConfig::getImagePath($resolved['entities_id'], $resolved['filename']);
-$real = @realpath($path);
-$base = @realpath(PluginBrandingConfig::getStorageBaseDir());
-
-if (
-    $real === false
-    || $base === false
-    || !str_starts_with($real, $base)
-    || !is_file($real)
-    || !Document::isImage($real)
-) {
+$real = PluginBrandingConfig::getReadableImagePath($resolved['entities_id'], $resolved['filename']);
+if ($real === null) {
     http_response_code(404);
     exit;
 }
 
 header('Content-Type: ' . Toolbox::getMime($real));
-header('Cache-Control: private, max-age=3600');
+header('Cache-Control: private, no-store');
+header('X-Content-Type-Options: nosniff');
 readfile($real);

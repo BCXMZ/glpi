@@ -58,12 +58,15 @@ function plugin_init_branding(): void
 {
     global $PLUGIN_HOOKS, $CFG_GLPI;
 
+    $PLUGIN_HOOKS['csrf_compliant']['branding'] = true;
+
     $plugin = new Plugin();
     if (!$plugin->isActivated('branding')) {
         return;
     }
 
-    $base = $CFG_GLPI['root_doc'];
+    require_once __DIR__ . '/inc/config.class.php';
+    $base = PluginBrandingConfig::getWebDir();
 
     require_once __DIR__ . '/inc/entity.class.php';
     Plugin::registerClass(PluginBrandingEntity::class, [
@@ -76,7 +79,7 @@ function plugin_init_branding(): void
             'properties' => [
                 'rel'  => 'stylesheet',
                 'type' => 'text/css',
-                'href' => $base . '/plugins/branding/front/login.css.php',
+                'href' => $base . '/front/login.css.php?v=' . filemtime(__DIR__ . '/front/login.css.php'),
             ],
         ],
     ];
@@ -87,7 +90,7 @@ function plugin_init_branding(): void
             'properties' => [
                 'rel'  => 'stylesheet',
                 'type' => 'text/css',
-                'href' => $base . '/plugins/branding/front/menu.css.php',
+                'href' => $base . '/front/menu.css.php?v=' . filemtime(__DIR__ . '/front/menu.css.php'),
             ],
         ],
     ];
@@ -95,9 +98,11 @@ function plugin_init_branding(): void
 
 function plugin_branding_boot(): void
 {
-    \Glpi\Http\Firewall::addPluginStrategyForLegacyScripts(
-        'branding',
-        '#^/front/(login\.css\.php|image\.php)$#',
-        \Glpi\Http\Firewall::STRATEGY_NO_CHECK
-    );
+    if (class_exists(\Glpi\Http\Firewall::class)) {
+        \Glpi\Http\Firewall::addPluginStrategyForLegacyScripts(
+            'branding',
+            '#^/front/(login\.css\.php|image\.php)$#',
+            \Glpi\Http\Firewall::STRATEGY_NO_CHECK
+        );
+    }
 }

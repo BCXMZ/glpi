@@ -16,8 +16,13 @@ require_once(__DIR__ . '/../inc/config.class.php');
 
 global $CFG_GLPI;
 
+if (!Plugin::isPluginActive('branding')) {
+    http_response_code(404);
+    exit;
+}
+
 header('Content-Type: text/css; charset=UTF-8');
-header('Cache-Control: public, max-age=300');
+header('Cache-Control: private, no-store');
 
 $resolved_bg   = PluginBrandingConfig::resolveFileForEntity(0, 'login_background');
 $resolved_logo = PluginBrandingConfig::resolveFileForEntity(0, 'login_logo');
@@ -26,18 +31,16 @@ if ($resolved_bg === null && $resolved_logo === null) {
     exit;
 }
 
-$root = $CFG_GLPI['root_doc'] . '/plugins/branding/front/image.php';
-
 $css = '';
 
 if ($resolved_bg !== null) {
-    $url_bg = htmlescape($root . '?field=login_background');
+    $url_bg = json_encode(PluginBrandingConfig::getImageUrl('login_background', $resolved_bg), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     $css .= <<<CSS
 body.welcome-anonymous {
     margin: 0;
     min-height: 100vh;
     background-color: #1e293b;
-    background-image: url("{$url_bg}");
+    background-image: url({$url_bg}) !important;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -66,14 +69,14 @@ CSS;
 }
 
 if ($resolved_logo !== null) {
-    $url_logo = htmlescape($root . '?field=login_logo');
+    $url_logo = json_encode(PluginBrandingConfig::getImageUrl('login_logo', $resolved_logo), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     $css .= <<<CSS
 body.welcome-anonymous .page-anonymous .glpi-logo {
     display: inline-block;
     width: min(280px, 85vw);
     max-width: 100%;
     height: 120px;
-    background: url("{$url_logo}") no-repeat center center !important;
+    background: url({$url_logo}) no-repeat center center !important;
     background-size: contain !important;
     content: none !important;
     -webkit-mask: none !important;

@@ -17,10 +17,29 @@
 class PluginBrandingConfig
 {
     private const TABLE = 'glpi_plugin_branding_entities';
+    public const FIELDS = ['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'];
 
     public static function getTable(): string
     {
         return self::TABLE;
+    }
+
+    public static function getWebDir(): string
+    {
+        global $CFG_GLPI;
+        // GLPI 11 routes marketplace assets through /plugins as well.
+        if (version_compare(GLPI_VERSION, '11.0.0', '<')) {
+            return Plugin::getWebDir('branding');
+        }
+        return $CFG_GLPI['root_doc'] . '/plugins/branding';
+    }
+
+    public static function getImageUrl(string $field, array $resolved): string
+    {
+        return self::getWebDir() . '/front/image.php?' . http_build_query([
+            'field' => $field,
+            'v' => hash('sha256', $resolved['entities_id'] . '/' . $resolved['filename']),
+        ], '', '&', PHP_QUERY_RFC3986);
     }
 
     public static function install(): bool
@@ -137,17 +156,34 @@ class PluginBrandingConfig
      */
     public static function resolveFileForEntity(int $entities_id, string $field): ?array
     {
-        if (!in_array($field, ['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'], true)) {
+        if ($entities_id < 0 || !in_array($field, self::FIELDS, true)) {
             return null;
         }
 
-        $chain = array_merge([$entities_id], getAncestorsOf('glpi_entities', $entities_id));
-        foreach ($chain as $eid) {
-            $eid = (int) $eid;
-            $row = self::getRowForEntity($eid);
-            if (!empty($row[$field])) {
-                return ['entities_id' => $eid, 'filename' => $row[$field]];
+        global $DB;
+
+        // getAncestorsOf() may return root-first cached ancestors. Follow the
+        // actual parent links so the closest configured entity always wins.
+        $visited = [];
+        while ($entities_id >= 0 && !isset($visited[$entities_id])) {
+            $visited[$entities_id] = true;
+            $row = self::getRowForEntity($entities_id);
+            if ($row[$field] !== null && self::getReadableImagePath($entities_id, $row[$field]) !== null) {
+                return ['entities_id' => $entities_id, 'filename' => $row[$field]];
             }
+            if ($entities_id === 0) {
+                break;
+            }
+            $parent = $DB->request([
+                'SELECT' => 'entities_id',
+                'FROM' => 'glpi_entities',
+                'WHERE' => ['id' => $entities_id],
+                'LIMIT' => 1,
+            ])->current();
+            if (!$parent) {
+                break;
+            }
+            $entities_id = (int) $parent['entities_id'];
         }
 
         return null;
@@ -155,7 +191,30 @@ class PluginBrandingConfig
 
     public static function getImagePath(int $entities_id, string $filename): string
     {
+        if (
+            $entities_id < 0 || $filename === '' || basename($filename) !== $filename
+            || str_contains($filename, '\\') || str_contains($filename, "\0")
+        ) {
+            throw new InvalidArgumentException('Invalid branding image path.');
+        }
         return self::getStorageBaseDir() . '/' . $entities_id . '/' . $filename;
+    }
+
+    public static function getReadableImagePath(int $entities_id, string $filename): ?string
+    {
+        try {
+            $path = realpath(self::getImagePath($entities_id, $filename));
+        } catch (InvalidArgumentException) {
+            return null;
+        }
+        $base = realpath(self::getStorageBaseDir());
+        if (
+            $path === false || $base === false || !str_starts_with($path, $base . DIRECTORY_SEPARATOR)
+            || !is_readable($path) || !Document::isImage($path)
+        ) {
+            return null;
+        }
+        return $path;
     }
 
     /**
@@ -163,27 +222,35 @@ class PluginBrandingConfig
      */
     public static function handleUpload(int $entities_id, string $field, array $fileinfo): bool
     {
+        if ($entities_id < 0 || !in_array($field, self::FIELDS, true)) {
+            return false;
+        }
         if (
             empty($fileinfo['tmp_name'])
             || ($fileinfo['error'] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK
             || !is_uploaded_file($fileinfo['tmp_name'])
         ) {
-            return false;
-        }
-
-        if (!in_array($field, ['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'], true)) {
+            Session::addMessageAfterRedirect(__('Could not save uploaded file.'), false, ERROR);
             return false;
         }
 
         $path = $fileinfo['tmp_name'];
-        if (!Document::isImage($path)) {
+        // PHP upload temporary files have no image extension. Detect their
+        // contents first and choose a safe extension instead of trusting name.
+        $type = (@getimagesize($path))[2] ?? null;
+        $ext = [
+            IMAGETYPE_JPEG => 'jpg',
+            IMAGETYPE_PNG => 'png',
+            IMAGETYPE_GIF => 'gif',
+            IMAGETYPE_BMP => 'bmp',
+            IMAGETYPE_WEBP => 'webp',
+        ][$type] ?? null;
+        if ($ext === null) {
             Session::addMessageAfterRedirect(__('The file must be an image.'), false, ERROR);
             return false;
         }
 
-        $ext = pathinfo($fileinfo['name'], PATHINFO_EXTENSION);
-        $ext = preg_replace('/[^a-z0-9]/i', '', (string) $ext) ?: 'bin';
-        $basename = $field . '_' . bin2hex(random_bytes(8)) . '.' . strtolower($ext);
+        $basename = $field . '_' . bin2hex(random_bytes(8)) . '.' . $ext;
 
         self::ensureStorageDir();
         $entity_dir = self::getStorageBaseDir() . '/' . $entities_id;
@@ -197,8 +264,25 @@ class PluginBrandingConfig
             return false;
         }
 
-        self::deleteStoredFile($entities_id, $field);
-        self::upsertField($entities_id, $field, $basename);
+        if (!Document::isImage($dest)) {
+            unlink($dest);
+            Session::addMessageAfterRedirect(__('The file must be an image.'), false, ERROR);
+            return false;
+        }
+
+        $old = self::getRowForEntity($entities_id)[$field];
+        try {
+            $saved = self::upsertField($entities_id, $field, $basename);
+        } catch (Throwable $e) {
+            unlink($dest);
+            throw $e;
+        }
+        if (!$saved) {
+            unlink($dest);
+            Session::addMessageAfterRedirect(__('Could not save uploaded file.'), false, ERROR);
+            return false;
+        }
+        self::deleteImage($entities_id, $old);
 
         return true;
     }
@@ -209,22 +293,26 @@ class PluginBrandingConfig
     public static function deleteStoredFile(int $entities_id, string $field): void
     {
         $row = self::getRowForEntity($entities_id);
-        $old = $row[$field] ?? null;
-        if (!empty($old)) {
-            $full = self::getImagePath($entities_id, $old);
-            if (is_file($full)) {
-                @unlink($full);
-            }
+        self::deleteImage($entities_id, $row[$field] ?? null);
+    }
+
+    private static function deleteImage(int $entities_id, ?string $filename): void
+    {
+        if ($filename !== null && ($path = self::getReadableImagePath($entities_id, $filename)) !== null) {
+            @unlink($path);
         }
     }
 
     /**
      * @param 'login_background'|'login_logo'|'logo_expanded'|'logo_collapsed' $field
      */
-    public static function upsertField(int $entities_id, string $field, ?string $value): void
+    public static function upsertField(int $entities_id, string $field, ?string $value): bool
     {
         global $DB;
 
+        if ($entities_id < 0 || !in_array($field, self::FIELDS, true)) {
+            return false;
+        }
         $it = $DB->request([
             'SELECT' => 'id',
             'FROM'   => self::TABLE,
@@ -237,13 +325,13 @@ class PluginBrandingConfig
         }
 
         if ($id !== null) {
-            $DB->update(
+            return $DB->update(
                 self::TABLE,
                 [$field => $value],
                 ['id' => $id]
             );
         } elseif ($value !== null && $value !== '') {
-            $DB->insert(
+            return $DB->insert(
                 self::TABLE,
                 [
                     'entities_id' => $entities_id,
@@ -251,43 +339,41 @@ class PluginBrandingConfig
                 ]
             );
         }
+        return true;
     }
 
-    public static function removeField(int $entities_id, string $field): void
+    public static function removeField(int $entities_id, string $field): bool
     {
-        if (!in_array($field, ['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'], true)) {
-            return;
+        if ($entities_id < 0 || !in_array($field, self::FIELDS, true)) {
+            return false;
         }
-        self::deleteStoredFile($entities_id, $field);
-
-        global $DB;
-        $it = $DB->request([
-            'SELECT' => 'id',
-            'FROM'   => self::TABLE,
-            'WHERE'  => ['entities_id' => $entities_id],
-            'LIMIT'  => 1,
-        ]);
-        foreach ($it as $r) {
-            $DB->update(self::TABLE, [$field => null], ['id' => (int) $r['id']]);
-            break;
+        $old = self::getRowForEntity($entities_id)[$field];
+        if (!self::upsertField($entities_id, $field, null)) {
+            return false;
         }
+        self::deleteImage($entities_id, $old);
+        return true;
     }
 
-    public static function processEntityFormPost(Entity $entity): void
+    public static function processEntityFormPost(Entity $entity): bool
     {
         $eid = (int) $entity->getID();
         if ($eid < 0) {
-            return;
+            return false;
         }
 
-        foreach (['login_background', 'login_logo', 'logo_expanded', 'logo_collapsed'] as $field) {
+        $success = true;
+        foreach (self::FIELDS as $field) {
             $key = 'plugin_branding_' . $field;
-            if (!empty($_POST['_plugin_branding_remove_' . $field])) {
-                self::removeField($eid, $field);
-            }
-            if (!empty($_FILES[$key]['name'])) {
-                self::handleUpload($eid, $field, $_FILES[$key]);
+            $upload = $_FILES[$key] ?? [];
+            if (($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE || !empty($upload['name'])) {
+                // Replacement wins over removal, and a failed replacement
+                // must keep the previous image intact.
+                $success = self::handleUpload($eid, $field, $upload) && $success;
+            } elseif (!empty($_POST['_plugin_branding_remove_' . $field])) {
+                $success = self::removeField($eid, $field) && $success;
             }
         }
+        return $success;
     }
 }

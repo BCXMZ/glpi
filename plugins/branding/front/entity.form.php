@@ -16,7 +16,16 @@ require_once(__DIR__ . '/../inc/config.class.php');
 
 Session::checkRight(Config::$rightname, UPDATE);
 
-$entities_id = (int) ($_POST['entities_id'] ?? 0);
+if (!Plugin::isPluginActive('branding')) {
+    http_response_code(404);
+    exit;
+}
+
+$entities_id = filter_var($_POST['entities_id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+if ($entities_id === false) {
+    http_response_code(400);
+    exit;
+}
 
 $entity = new Entity();
 if (!$entity->getFromDB($entities_id)) {
@@ -30,14 +39,16 @@ if (!Session::haveAccessToEntity($entities_id)) {
 }
 
 if (empty($_POST['update'])) {
-    Html::redirect($entity->getFormURLWithID($entities_id) . '&_glpi_tab=' . rawurlencode('PluginBrandingEntity$1'));
+    Html::redirect($entity->getFormURLWithID($entities_id) . '&forcetab=' . rawurlencode('PluginBrandingEntity$1'));
 }
 
 // CSRF is already validated by GLPI's CheckCsrfListener before this script runs; do not call validateCSRF again
 // (the token is single-use and would fail on a second check).
 
-PluginBrandingConfig::processEntityFormPost($entity);
+if (PluginBrandingConfig::processEntityFormPost($entity)) {
+    Session::addMessageAfterRedirect(__('Branding configuration saved.'), false, INFO);
+} else {
+    Session::addMessageAfterRedirect(__('Some branding images could not be saved.'), false, ERROR);
+}
 
-Session::addMessageAfterRedirect(__('Branding configuration saved.'), false, INFO);
-
-Html::redirect($entity->getFormURLWithID($entities_id) . '&_glpi_tab=' . rawurlencode('PluginBrandingEntity$1'));
+Html::redirect($entity->getFormURLWithID($entities_id) . '&forcetab=' . rawurlencode('PluginBrandingEntity$1'));

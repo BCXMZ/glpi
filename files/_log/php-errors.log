@@ -2922,3 +2922,73 @@ Stack trace:
   ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
   ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
 
+[2026-11-09 10:39:49] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-09 10:39:54] glpi.CRITICAL:   *** Uncaught PHP Exception Glpi\Exception\Http\HttpException: "" at CheckDatabaseStatusListener.php line 101
+  Backtrace :
+  ...estListener/CheckDatabaseStatusListener.php:101 
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\RequestListener\CheckDatabaseStatusListener->onKernelRequest()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:157    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-09 10:40:23] glpi.WARNING:   *** User Warning: Plugin "branding" version changed. It has been deactivated as its update process has to be launched. at Plugin.php line 915
+  Backtrace :
+  ./src/Plugin.php:915                               
+  ./src/Plugin.php:751                               Plugin->checkPluginState()
+  ...ener/PostBootListener/CheckPluginsStates.php:74 Plugin->checkStates()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\PostBootListener\CheckPluginsStates->onPostBoot()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./src/Glpi/Kernel/Kernel.php:180                   Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/Kernel.php:201        Glpi\Kernel\Kernel->boot()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-09 10:40:23] glpi.WARNING:   *** Warning: Undefined global variable $_SESSION at Event.php line 131
+  Backtrace :
+  ./src/Glpi/Event.php:131                           
+  ./src/Plugin.php:925                               Glpi\Event::log()
+  ./src/Plugin.php:751                               Plugin->checkPluginState()
+  ...ener/PostBootListener/CheckPluginsStates.php:74 Plugin->checkStates()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\PostBootListener\CheckPluginsStates->onPostBoot()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./src/Glpi/Kernel/Kernel.php:180                   Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/Kernel.php:201        Glpi\Kernel\Kernel->boot()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+
+[2026-11-09 10:40:23] glpi.WARNING:   *** Warning: Trying to access array offset on null at Event.php line 131
+  Backtrace :
+  ./src/Glpi/Event.php:131                           
+  ./src/Plugin.php:925                               Glpi\Event::log()
+  ./src/Plugin.php:751                               Plugin->checkPluginState()
+  ...ener/PostBootListener/CheckPluginsStates.php:74 Plugin->checkStates()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\PostBootListener\CheckPluginsStates->onPostBoot()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./src/Glpi/Kernel/Kernel.php:180                   Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/Kernel.php:201        Glpi\Kernel\Kernel->boot()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+

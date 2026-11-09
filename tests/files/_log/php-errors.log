@@ -1,0 +1,1448 @@
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed when a session is active at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:28] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:28] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1956
+  Backtrace :
+  ./src/Html.php:1956                                
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1046
+  Backtrace :
+  ./src/Html.php:1046                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1050
+  Backtrace :
+  ./src/Html.php:1050                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:28] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1956
+  Backtrace :
+  ./src/Html.php:1956                                
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1046
+  Backtrace :
+  ./src/Html.php:1046                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1050
+  Backtrace :
+  ./src/Html.php:1050                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1956
+  Backtrace :
+  ./src/Html.php:1956                                
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1046
+  Backtrace :
+  ./src/Html.php:1046                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 1050
+  Backtrace :
+  ./src/Html.php:1050                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:30] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./vendor/symfony/http-foundation/Response.php:408) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:31] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1089
+  Backtrace :
+  ./src/Html.php:1089                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:31] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1231
+  Backtrace :
+  ./src/Html.php:1231                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:31] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1754
+  Backtrace :
+  ./src/Html.php:1754                                
+  :                                                  Html::footer()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:61 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:32] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:33] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 1956
+  Backtrace :
+  ./src/Html.php:1956                                
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1959                                Html::header_nocache()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 1046
+  Backtrace :
+  ./src/Html.php:1046                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 1050
+  Backtrace :
+  ./src/Html.php:1050                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 2093
+  Backtrace :
+  ./src/Html.php:2093                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:34] glpi.WARNING:   *** Warning: Cannot modify header information - headers already sent by (output started at ./front/cron.php:159) at Html.php line 2094
+  Backtrace :
+  ./src/Html.php:2094                                
+  ./src/Html.php:1054                                Html::header_nocache()
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:35] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed after headers have already been sent at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:35] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:35] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:45] glpi.WARNING:   *** Warning: session_name(): Session name cannot be changed when a session is active at session.php line 193
+  Backtrace :
+  ...odingmachine/safe/generated/8.1/session.php:193 
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:45] glpi.CRITICAL:   *** Uncaught An error occurred
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:45] glpi.CRITICAL:   *** Uncaught PHP Exception Safe\Exceptions\SessionException: "An error occurred" at SessionException.php line 9
+  Backtrace :
+  ...afe/generated/Exceptions/SessionException.php:9 
+  ...odingmachine/safe/generated/8.1/session.php:198 Safe\Exceptions\SessionException::createFromPhpError()
+  ./src/Glpi/Application/SystemConfigurator.php:347  Safe\session_name()
+  ./src/Glpi/Application/SystemConfigurator.php:66   Glpi\Application\SystemConfigurator->setSessionConfiguration()
+  ./src/Glpi/Kernel/Kernel.php:74                    Glpi\Application\SystemConfigurator->__construct()
+  ./public/index.php:74                              Glpi\Kernel\Kernel->__construct()
+
+[2026-11-09 11:47:45] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1089
+  Backtrace :
+  ./src/Html.php:1089                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:45] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1231
+  Backtrace :
+  ./src/Html.php:1231                                
+  ./src/Html.php:1961                                Html::includeHeader()
+  :                                                  Html::nullHeader()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:46 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+
+[2026-11-09 11:47:46] glpi.WARNING:   *** Warning: Undefined array key "glpi_use_mode" at Html.php line 1754
+  Backtrace :
+  ./src/Html.php:1754                                
+  :                                                  Html::footer()
+  ...Application/View/Extension/PhpExtension.php:105 call_user_func_array()
+  ...ates/7b/7bc0dcf0fcd3c2757ac89197425378b7.php:61 Glpi\Application\View\Extension\PhpExtension->call()
+  ./vendor/twig/twig/src/Template.php:411            __TwigTemplate_4f073463a26643bba2ff87b6cfce9163->doDisplay()
+  ./vendor/twig/twig/src/Template.php:366            Twig\Template->yield()
+  ./vendor/twig/twig/src/Template.php:381            Twig\Template->display()
+  ./vendor/twig/twig/src/TemplateWrapper.php:51      Twig\Template->render()
+  .../Glpi/Application/View/TemplateRenderer.php:170 Twig\TemplateWrapper->render()
+  ./src/Glpi/Controller/AbstractController.php:68    Glpi\Application\View\TemplateRenderer->render()
+  ./src/Glpi/Controller/ErrorController.php:177      Glpi\Controller\AbstractController->render()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\ErrorController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ...http-kernel/EventListener/ErrorListener.php:117 Symfony\Component\HttpKernel\HttpKernel->handle()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Symfony\Component\HttpKernel\EventListener\ErrorListener->onKernelException()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:239    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:132    Symfony\Component\HttpKernel\HttpKernel->handleThrowable()
+  ...rnel/EventListener/DebugHandlersListener.php:84 Symfony\Component\HttpKernel\HttpKernel->terminateWithException()
+  ...ndor/symfony/error-handler/ErrorHandler.php:543 Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::{closure:Symfony\Component\HttpKernel\EventListener\DebugHandlersListener::configure():78}()
+  ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
+  :                                                  Glpi\Error\ErrorHandler->handleException()
+

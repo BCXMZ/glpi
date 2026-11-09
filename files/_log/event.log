@@ -38,3 +38,15 @@
 [setup] [Plugin 6] 3: Plugin Branding has been installed by glpi (2).
 2026-10-28 12:55:59 [2@adsl-172-10-0-22.dsl.sndg02.sbcglobal.net]
 [setup] [Plugin 7] 3: Plugin Branding has been activated by glpi (2).
+2026-11-09 10:40:23 [@Alvaros-MacBook-Pro.local]
+[setup] [Plugin 8] 3: Plugin branding version changed. It has been deactivated as its update process has to be launched.
+2026-11-09 10:40:26 [@Alvaros-MacBook-Pro.local]
+[login] 3: glpi login from IP ::1
+2026-11-09 10:40:43 [2@Alvaros-MacBook-Pro.local]
+[setup] [Plugin 10] 3: Plugin OAuth SSO has been installed by glpi (2).
+2026-11-09 10:40:47 [2@Alvaros-MacBook-Pro.local]
+[setup] [Plugin 11] 3: Plugin OAuth SSO has been activated by glpi (2).
+2026-11-09 10:43:32 [2@Alvaros-MacBook-Pro.local]
+[setup] [Plugin 13] 3: Plugin Branding has been installed by glpi (2).
+2026-11-09 10:43:37 [2@Alvaros-MacBook-Pro.local]
+[setup] [Plugin 14] 3: Plugin Branding has been activated by glpi (2).

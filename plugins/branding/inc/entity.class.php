@@ -68,12 +68,12 @@ class PluginBrandingEntity extends CommonGLPI
 
         $row      = PluginBrandingConfig::getRowForEntity($id);
         $canedit  = Session::haveAccessToEntity($id);
-        $form_url = $CFG_GLPI['root_doc'] . '/plugins/branding/front/entity.form.php';
+        $form_url = PluginBrandingConfig::getWebDir() . '/front/entity.form.php';
 
         echo '<div class="card"><div class="card-body">';
 
         echo '<p class="text-muted">' . htmlescape(
-            __('Login page images (background and logo) use the root entity (ID 0) and inherited values. Menu logos use the active entity and inherit from parent entities.')
+            __('Login page images (background and logo) use only the root entity (ID 0). Menu logos use the active entity and inherit from the closest configured parent entity. Removing an image restores inheritance.')
         ) . '</p>';
 
         if ($canedit) {
@@ -93,7 +93,7 @@ class PluginBrandingEntity extends CommonGLPI
             $fname = 'plugin_branding_' . $field;
             $has   = !empty($row[$field]);
 
-            echo '<div class="mb-3 row"><label class="col-form-label col-sm-4">'
+            echo '<div class="mb-3 row"><label class="col-form-label col-sm-4" for="' . htmlescape($fname) . '">'
                 . htmlescape($label) . '</label><div class="col-sm-8">';
 
             if ($has) {
@@ -109,8 +109,8 @@ class PluginBrandingEntity extends CommonGLPI
             }
 
             if ($canedit) {
-                echo '<input type="file" class="form-control" name="' . htmlescape($fname)
-                    . '" accept="image/*" /><small class="text-muted d-block mt-1">'
+                echo '<input type="file" class="form-control" id="' . htmlescape($fname) . '" name="' . htmlescape($fname)
+                    . '" accept="image/png,image/jpeg,image/gif,image/bmp,image/webp" /><small class="text-muted d-block mt-1">'
                     . htmlescape(__('Recommended: PNG or JPEG. Large files may be slow to load.'))
                     . '</small>';
             }
