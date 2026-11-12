@@ -24,8 +24,9 @@ if (!Plugin::isPluginActive('branding')) {
 header('Content-Type: text/css; charset=UTF-8');
 header('Cache-Control: private, no-store');
 
-$resolved_bg   = PluginBrandingConfig::resolveFileForEntity(0, 'login_background');
-$resolved_logo = PluginBrandingConfig::resolveFileForEntity(0, 'login_logo');
+$entity_id = PluginBrandingConfig::getLoginEntityId($_GET['branding_entity'] ?? 0);
+$resolved_bg   = PluginBrandingConfig::resolveFileForEntity($entity_id, 'login_background');
+$resolved_logo = PluginBrandingConfig::resolveFileForEntity($entity_id, 'login_logo');
 
 if ($resolved_bg === null && $resolved_logo === null) {
     exit;
@@ -36,7 +37,8 @@ $css = '';
 if ($resolved_bg !== null) {
     $url_bg = json_encode(PluginBrandingConfig::getImageUrl('login_background', $resolved_bg), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     $css .= <<<CSS
-body.welcome-anonymous {
+html:root body.welcome-anonymous,
+html:root.stcl-enabled.stcl-login-enabled.stcl-login-background-custom body.welcome-anonymous {
     margin: 0;
     min-height: 100vh;
     background-color: #1e293b;
@@ -71,8 +73,10 @@ CSS;
 if ($resolved_logo !== null) {
     $url_logo = json_encode(PluginBrandingConfig::getImageUrl('login_logo', $resolved_logo), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     $css .= <<<CSS
-body.welcome-anonymous .page-anonymous .glpi-logo {
-    display: inline-block;
+body.welcome-anonymous .page-anonymous .glpi-logo,
+html:root.stcl-enabled.stcl-login-enabled.stcl-login-logo-custom body.welcome-anonymous
+.page-anonymous .glpi-logo.stcl-native-login-logo-hidden {
+    display: inline-block !important;
     width: min(280px, 85vw);
     max-width: 100%;
     height: 120px;
@@ -81,6 +85,11 @@ body.welcome-anonymous .page-anonymous .glpi-logo {
     content: none !important;
     -webkit-mask: none !important;
     mask: none !important;
+}
+
+/* Keep the entity logo visible when ST-Custom Login also supplies a logo. */
+body.welcome-anonymous #stcl-login-logo {
+    display: none !important;
 }
 
 CSS;

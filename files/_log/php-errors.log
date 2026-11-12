@@ -2992,3 +2992,14 @@ Stack trace:
   ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
   ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
 
+[2026-11-12 08:58:00] glpi.CRITICAL:   *** Fatal Error: Uncaught Error: mysqli object is not fully initialized in ./src/DBmysql.php:415
+Stack trace:
+#0 ./src/DBmysql.php(415): mysqli->query('SELECT `directo...')
+#1 ./src/DBmysqlIterator.php(128): DBmysql->doQuery('SELECT `directo...')
+#2 ./src/DBmysql.php(1089): DBmysqlIterator->execute(Array)
+#3 Command line code(1): DBmysql->request(Array)
+#4 {main}
+  thrown
+  Backtrace :
+  ./src/DBmysql.php:415                              
+

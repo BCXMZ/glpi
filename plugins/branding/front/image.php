@@ -28,7 +28,10 @@ if (!in_array($field, ['login_background', 'login_logo', 'logo_expanded', 'logo_
 }
 
 if ($field === 'login_background' || $field === 'login_logo') {
-    $resolved = PluginBrandingConfig::resolveFileForEntity(0, $field);
+    $resolved = PluginBrandingConfig::resolveFileForEntity(
+        PluginBrandingConfig::getLoginEntityId($_GET['branding_entity'] ?? 0),
+        $field
+    );
 } else {
     Session::checkLoginUser();
     $resolved = PluginBrandingConfig::resolveFileForEntity((int) Session::getActiveEntity(), $field);

@@ -24,11 +24,13 @@ After upgrading plugin files, open **Setup** → **Plugins** and run **Upgrade**
 1. **Administration** → **Entities** → select an entity → tab **Branding**.
 2. Upload or remove images, then **Save**.
 
-The anonymous login page always uses the root entity (ID `0`), because no user entity is selected before authentication. Menu images use the active entity, then its nearest configured parent, up to the root. Missing files are skipped. Removing an image restores this inheritance.
+Open **Entity login page** in the Branding tab to use that entity's login background and logo. Share this URL with its users, for example `/index.php?branding_entity=1` for entity `1` (include your GLPI installation's URL prefix). The general login without this parameter uses the root entity (ID `0`). The link controls appearance only: authentication, permissions and the user's active entity are still managed by GLPI. Invalid or unknown entity IDs fall back to the root.
+
+Login images and menu images inherit from the nearest configured parent, up to the root. Menu images use the authenticated user's active entity. Missing files are skipped. Removing an image restores this inheritance. The entity context is included in image URLs, so different entity login pages can be open in separate browser tabs. With JavaScript enabled, failed login and retry preserve the entity link.
 
 PNG, JPEG, GIF, BMP and WebP are supported. File contents determine the stored extension; SVG and other formats are rejected. PHP's `upload_max_filesize` and `post_max_size` limits still apply. A failed replacement keeps the previous image and displays an error. Images and styles are refreshed after saving or changing the active entity.
 
-If another appearance plugin (such as ST-Custom Login) configures the same images, its styles may override Branding. Configure those images in a single plugin.
+Configured Branding login images take priority over ST-Custom Login's background and logo. Other ST-Custom Login settings remain available. Menu logos configured in both plugins may conflict; configure those in a single plugin.
 
 ## Usage
 
@@ -55,6 +57,8 @@ branding/
 ├── inc/
 │   ├── config.class.php
 │   └── entity.class.php
+├── public/
+│   └── js/login.js
 └── front/
     ├── entity.form.php
     ├── image.php
@@ -88,3 +92,11 @@ BRANDING_TEST_URL=http://127.0.0.1:18811 php vendor/bin/phpunit plugins/branding
 ```
 
 Use only that testing server URL, never a production URL. Without `BRANDING_TEST_URL`, the HTTP tests are explicitly skipped. The regression tests cover nearest-parent inheritance, removal, missing files, invalid paths, upload failure preservation, all five raster formats, replacement, public login images, restricted menu images and CSRF rejection.
+
+For browser coverage, with `agent-browser` and Chromium installed, run against the same testing server after the PHP tests finish:
+
+```sh
+BRANDING_TEST_URL=http://127.0.0.1:18811 python3 plugins/branding/tests/run_browser_tests.py
+```
+
+This creates disposable entities in the testing database, uploads through the real form, checks menu logos, entity login images, inheritance, isolation, mobile rendering, ST-Custom Login CSS conflicts, failed-login retry and successful authentication. The script removes its entities and uploads in `finally` and prints the screenshot directory. Do not run database suites concurrently.

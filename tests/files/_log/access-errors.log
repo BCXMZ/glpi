@@ -173,3 +173,161 @@ CSRF check failed for User ID: 8 at /plugins/branding/front/entity.form.php
   ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
   ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
   ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:18:01 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID:  at /plugins/branding/front/entity.form.php
+[2026-11-12 09:18:01] User ID: `Anonymous` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:18:03 [8@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID: 8 at /plugins/branding/front/entity.form.php
+[2026-11-12 09:18:03] User ID: `8` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+[2026-11-12 09:35:14] User ID: `8` tried to execute an invalid request on `/front/entity.form.php?id=51`.
+  Additional information: Missing READ right. Cannot view the item.
+  Backtrace :
+  ./src/CommonDBTM.php:6578                          
+  .../Glpi/Controller/DropdownFormController.php:216 CommonDBTM::displayFullPageForItem()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\DropdownFormController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:35:15 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID:  at /plugins/branding/front/entity.form.php
+[2026-11-12 09:35:15] User ID: `Anonymous` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:35:16 [8@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID: 8 at /plugins/branding/front/entity.form.php
+[2026-11-12 09:35:16] User ID: `8` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:42:36 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID:  at /plugins/branding/front/entity.form.php
+[2026-11-12 09:42:36] User ID: `Anonymous` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:42:37 [8@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID: 8 at /plugins/branding/front/entity.form.php
+[2026-11-12 09:42:37] User ID: `8` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+[2026-11-12 09:47:37] User ID: `8` tried to execute an invalid request on `/front/entity.form.php?forcetab=PluginBrandingEntity%241&id=0`.
+  Additional information: Missing READ right. Cannot view the item.
+  Backtrace :
+  ./src/CommonDBTM.php:6578                          
+  .../Glpi/Controller/DropdownFormController.php:216 CommonDBTM::displayFullPageForItem()
+  ./vendor/symfony/http-kernel/HttpKernel.php:181    Glpi\Controller\DropdownFormController->__invoke()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:54:24 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID:  at /plugins/branding/front/entity.form.php
+[2026-11-12 09:54:24] User ID: `Anonymous` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()
+2026-11-12 09:54:25 [8@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+CSRF check failed for User ID: 8 at /plugins/branding/front/entity.form.php
+[2026-11-12 09:54:25] User ID: `8` tried to execute an invalid request on `/plugins/branding/front/entity.form.php`.
+
+  Backtrace :
+  ./src/Session.php:1826                             
+  ...ner/ControllerListener/CheckCsrfListener.php:89 Session::checkCSRF()
+  .../event-dispatcher/Debug/WrappedListener.php:116 Glpi\Kernel\Listener\ControllerListener\CheckCsrfListener->onKernelController()
+  ...ymfony/event-dispatcher/EventDispatcher.php:220 Symfony\Component\EventDispatcher\Debug\WrappedListener->__invoke()
+  ...symfony/event-dispatcher/EventDispatcher.php:56 Symfony\Component\EventDispatcher\EventDispatcher->callListeners()
+  ...spatcher/Debug/TraceableEventDispatcher.php:142 Symfony\Component\EventDispatcher\EventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:169    Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher->dispatch()
+  ./vendor/symfony/http-kernel/HttpKernel.php:76     Symfony\Component\HttpKernel\HttpKernel->handleRaw()
+  ./vendor/symfony/http-kernel/Kernel.php:208        Symfony\Component\HttpKernel\HttpKernel->handle()
+  ./src/Glpi/Kernel/Kernel.php:201                   Symfony\Component\HttpKernel\Kernel->handle()
+  ./public/index.php:78                              Glpi\Kernel\Kernel->handle()
+  ./plugins/branding/tests/router.php:12             require()

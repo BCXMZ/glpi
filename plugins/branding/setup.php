@@ -79,10 +79,16 @@ function plugin_init_branding(): void
             'properties' => [
                 'rel'  => 'stylesheet',
                 'type' => 'text/css',
-                'href' => $base . '/front/login.css.php?v=' . filemtime(__DIR__ . '/front/login.css.php'),
+                'href' => $base . '/front/login.css.php?' . http_build_query([
+                    'v' => filemtime(__DIR__ . '/front/login.css.php'),
+                    'branding_entity' => PluginBrandingConfig::getLoginEntityId($_GET['branding_entity'] ?? 0),
+                ], '', '&', PHP_QUERY_RFC3986),
             ],
         ],
     ];
+
+    $PLUGIN_HOOKS[\Glpi\Plugin\Hooks::ADD_JAVASCRIPT_ANONYMOUS_PAGE]['branding'] =
+        version_compare(GLPI_VERSION, '11.0.0', '<') ? 'public/js/login.js' : 'js/login.js';
 
     $PLUGIN_HOOKS[\Glpi\Plugin\Hooks::ADD_HEADER_TAG]['branding'] = [
         [

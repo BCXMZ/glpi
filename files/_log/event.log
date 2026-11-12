@@ -50,3 +50,33 @@
 [setup] [Plugin 13] 3: Plugin Branding has been installed by glpi (2).
 2026-11-09 10:43:37 [2@Alvaros-MacBook-Pro.local]
 [setup] [Plugin 14] 3: Plugin Branding has been activated by glpi (2).
+2026-11-09 16:25:11 [@Alvaros-MacBook-Pro.local]
+[login] 3: glpi login from IP ::1
+2026-11-12 09:35:29 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 09:35:49 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 09:37:34 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1
+2026-11-12 09:37:50 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 09:39:25 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1
+2026-11-12 09:40:41 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: Failed login for alvaro from IP ::1
+2026-11-12 09:40:53 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 09:42:12 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1
+2026-11-12 09:45:00 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 10:02:11 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1
+2026-11-12 10:02:36 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 10:04:14 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1
+2026-11-12 10:04:44 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: glpi login from IP ::1
+2026-11-12 10:05:00 [@adsl-172-10-0-145.dsl.sndg02.sbcglobal.net]
+[login] 3: alvaro login from IP ::1

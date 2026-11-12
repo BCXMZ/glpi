@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import os
 import shutil
@@ -55,12 +56,21 @@ def inline_fixture() -> str:
 
 
 def attach_error_collectors(page) -> tuple[list[str], list[str]]:
+    # Fixtures use a reserved origin, not a running GLPI server. Serve their
+    # placeholder images locally instead of depending on DNS/network failures.
+    placeholder = base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+    page.route(
+        "https://glpi.example.test/**",
+        lambda route: route.fulfill(status=200, content_type="image/gif", body=placeholder)
+        if route.request.resource_type == "image" or "favicon" in route.request.url
+        else route.continue_(),
+    )
     page_errors: list[str] = []
     console_errors: list[str] = []
     page.on("pageerror", lambda error: page_errors.append(str(error)))
     page.on(
         "console",
-        lambda message: console_errors.append(message.text)
+        lambda message: console_errors.append(f"{message.text} ({message.location.get('url', '')})")
         if message.type == "error"
         else None,
     )

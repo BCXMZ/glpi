@@ -73,8 +73,13 @@ class PluginBrandingEntity extends CommonGLPI
         echo '<div class="card"><div class="card-body">';
 
         echo '<p class="text-muted">' . htmlescape(
-            __('Login page images (background and logo) use only the root entity (ID 0). Menu logos use the active entity and inherit from the closest configured parent entity. Removing an image restores inheritance.')
+            __('Login images apply to the entity login link below. The general login uses the root entity. Menu logos use the active entity. Missing images inherit from the closest configured parent; removing an image restores inheritance.')
         ) . '</p>';
+
+        $login_url = PluginBrandingConfig::getLoginUrl($id);
+        echo '<p><a href="' . htmlescape($login_url) . '" target="_blank" rel="noopener">'
+            . htmlescape(__('Entity login page')) . '</a><br><code>' . htmlescape($login_url) . '</code></p>';
+        echo '<p class="text-muted">' . htmlescape(__('To preview the login page while signed in, open this link in a private browser window.')) . '</p>';
 
         if ($canedit) {
             echo '<form method="post" action="' . htmlescape($form_url) . '" enctype="multipart/form-data" data-submit-once>';

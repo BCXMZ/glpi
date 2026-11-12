@@ -44,6 +44,33 @@ final class BrandingTest extends DbTestCase
         self::assertCount(4, PluginBrandingConfig::getRowForEntity(-1));
     }
 
+    public function testLoginContextRejectsInvalidEntitiesWithoutChangingActiveEntity(): void
+    {
+        $this->login();
+        $entity = $this->createItem(Entity::class, ['name' => 'Branded login', 'entities_id' => 0]);
+        $id = (int) $entity->getID();
+        $active = Session::getActiveEntity();
+        self::assertSame($id, PluginBrandingConfig::getLoginEntityId((string) $id));
+        foreach ([null, '', -1, 'invalid', '1 OR 1=1', [], ['1'], PHP_INT_MAX] as $invalid) {
+            self::assertSame(0, PluginBrandingConfig::getLoginEntityId($invalid));
+        }
+        self::assertSame($active, Session::getActiveEntity());
+    }
+
+    public function testPublicImageUrlsKeepEntityContextAndMenuUrlsDoNotSelectEntities(): void
+    {
+        $resolved = ['entities_id' => 42, 'filename' => 'logo.png'];
+        foreach (PluginBrandingConfig::FIELDS as $field) {
+            parse_str(parse_url(PluginBrandingConfig::getImageUrl($field, $resolved), PHP_URL_QUERY), $query);
+            self::assertSame($field, $query['field']);
+            if (str_starts_with($field, 'login_')) {
+                self::assertSame('42', $query['branding_entity']);
+            } else {
+                self::assertArrayNotHasKey('branding_entity', $query);
+            }
+        }
+    }
+
     public function testClosestAncestorWinsAndRemovalRestoresInheritance(): void
     {
         $this->login();

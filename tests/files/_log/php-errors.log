@@ -1446,3 +1446,24 @@
   ./src/Glpi/Error/ErrorHandler.php:229              Symfony\Component\ErrorHandler\ErrorHandler->handleException()
   :                                                  Glpi\Error\ErrorHandler->handleException()
 
+[2026-11-12 08:58:00] glpi.WARNING:   *** Test logger
+[2026-11-12 08:58:00] glpi.CRITICAL:   *** Error thrown while running command "{command}". Message: "{message}"
+  Backtrace :
+  ...le/Database/CheckSchemaIntegrityCommand.php:170 
+  ./src/Glpi/Console/AbstractCommand.php:107         Glpi\Console\Database\CheckSchemaIntegrityCommand->initDbConnection()
+  ./vendor/symfony/console/Command/Command.php:292   Glpi\Console\AbstractCommand->initialize()
+  ./vendor/symfony/console/Application.php:1121      Symfony\Component\Console\Command\Command->run()
+  ./src/Glpi/Console/Application.php:330             Symfony\Component\Console\Application->doRunCommand()
+  ./vendor/symfony/console/Application.php:324       Glpi\Console\Application->doRunCommand()
+  ./vendor/symfony/console/Application.php:175       Symfony\Component\Console\Application->doRun()
+  ./bin/console:124                                  Symfony\Component\Console\Application->run()
+
+[2026-11-12 08:58:00] glpi.DEBUG:   *** Command "{command}" exited with code "{code}"
+[2026-11-12 09:51:13] glpi.ALERT:   *** Fatal Compile Error: Cannot redeclare class PluginBrandingConfig (previously declared in ./plugins/branding/inc/config.class.php:17)
+  Backtrace :
+  ./plugins/branding/inc/config.class.php:17         
+
+[2026-11-12 09:51:53] glpi.ALERT:   *** Fatal Compile Error: Cannot redeclare class PluginBrandingConfig (previously declared in ./plugins/branding/inc/config.class.php:17)
+  Backtrace :
+  ./plugins/branding/inc/config.class.php:17         
+

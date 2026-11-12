@@ -39,7 +39,32 @@ class PluginBrandingConfig
         return self::getWebDir() . '/front/image.php?' . http_build_query([
             'field' => $field,
             'v' => hash('sha256', $resolved['entities_id'] . '/' . $resolved['filename']),
-        ], '', '&', PHP_QUERY_RFC3986);
+        ] + (in_array($field, ['login_background', 'login_logo'], true)
+            ? ['branding_entity' => $resolved['entities_id']] : []), '', '&', PHP_QUERY_RFC3986);
+    }
+
+    /** Public login branding never selects an authenticated user's active entity. */
+    public static function getLoginEntityId(mixed $value): int
+    {
+        global $DB;
+
+        $id = filter_var($value, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+        if ($id === false || $id === 0) {
+            return 0;
+        }
+
+        return $DB->request([
+            'SELECT' => 'id',
+            'FROM' => 'glpi_entities',
+            'WHERE' => ['id' => $id],
+        ])->count() > 0 ? $id : 0;
+    }
+
+    public static function getLoginUrl(int $entities_id): string
+    {
+        global $CFG_GLPI;
+
+        return $CFG_GLPI['root_doc'] . '/index.php?branding_entity=' . $entities_id;
     }
 
     public static function install(): bool

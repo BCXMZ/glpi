@@ -47,15 +47,103 @@ final class BrandingHttpTest extends TestCase
         return $crawler->filter('input[name="_glpi_csrf_token"]')->first()->attr('value');
     }
 
-    private function save(array $fields): array
+    private function save(array $fields, int $entity = 0): array
     {
-        $page = $this->request('/front/entity.form.php?id=0');
+        $page = $this->request('/front/entity.form.php?id=' . $entity);
         self::assertSame(200, $page['status']);
         $crawler = new Symfony\Component\DomCrawler\Crawler($page['body']);
         return $this->request(self::FRONT . 'entity.form.php', $fields + [
-            'entities_id' => '0', 'update' => '1',
+            'entities_id' => (string) $entity, 'update' => '1',
             '_glpi_csrf_token' => $crawler->filter('meta[property="glpi:csrf_token"]')->attr('content'),
         ]);
+    }
+
+    private function login(): void
+    {
+        $page = $this->request('/');
+        self::assertSame(302, $this->request('/front/login.php', [
+            'login_name' => TU_USER, 'login_password' => TU_PASS, 'auth' => 'local',
+            '_glpi_csrf_token' => $this->token($page['body']),
+        ])['status']);
+        $central = $this->request('/front/central.php');
+        $crawler = new Symfony\Component\DomCrawler\Crawler($central['body']);
+        self::assertSame(302, $this->request('/Session/ChangeEntity', [
+            'id' => '0', 'is_recursive' => '1',
+            '_glpi_csrf_token' => $crawler->filter('meta[property="glpi:csrf_token"]')->attr('content'),
+        ])['status']);
+    }
+
+    public function testEntityLoginUploadInheritanceIsolationAndRemoval(): void
+    {
+        global $DB;
+        self::assertSame(array_fill_keys(PluginBrandingConfig::FIELDS, null), PluginBrandingConfig::getRowForEntity(0));
+        $entities = [];
+        $fixture = tempnam(sys_get_temp_dir(), 'branding_entity_');
+        $canvas = imagecreatetruecolor(3, 3);
+        imagefill($canvas, 0, 0, imagecolorallocate($canvas, 90, 120, 200));
+        imagepng($canvas, $fixture);
+        try {
+            foreach (['parent', 'child', 'sibling'] as $name) {
+                self::assertTrue($DB->insert('glpi_entities', [
+                    'name' => 'Branding HTTP ' . $name,
+                    'entities_id' => $name === 'child' ? $entities['parent'] : 0,
+                ]));
+                $entities[$name] = (int) $DB->insertId();
+            }
+            $DB->update('glpi_entities', ['sons_cache' => null], ['id' => 0]);
+            $cache = (new \Glpi\Cache\CacheManager())->getCoreCacheInstance();
+            $cache->delete('sons_cache_glpi_entities_0');
+            $this->login();
+            $parent = $entities['parent'];
+            $child = $entities['child'];
+            self::assertSame(302, $this->save([
+                'plugin_branding_login_background' => new CURLFile($fixture, 'image/png', 'background.png'),
+                'plugin_branding_login_logo' => new CURLFile($fixture, 'image/png', 'logo.png'),
+            ], $parent)['status']);
+            foreach (['login_background', 'login_logo'] as $field) {
+                self::assertNotNull(PluginBrandingConfig::getRowForEntity($parent)[$field]);
+            }
+            $this->request('/front/logout.php?noAUTO=1');
+            $page = $this->request('/index.php?branding_entity=' . $child);
+            $crawler = new Symfony\Component\DomCrawler\Crawler($page['body']);
+            $href = $crawler->filter('link[href*="/branding/front/login.css.php"]')->attr('href');
+            self::assertStringContainsString('branding_entity=' . $child, $href);
+            self::assertStringContainsString('/branding/js/login.js', $page['body']);
+            $css = $this->request($href);
+            self::assertSame(200, $css['status']);
+            foreach (['login_background', 'login_logo'] as $field) {
+                $url = PluginBrandingConfig::getImageUrl($field, PluginBrandingConfig::resolveFileForEntity($child, $field));
+                self::assertStringContainsString($url, $css['body']);
+                self::assertSame(file_get_contents($fixture), $this->request($url)['body']);
+                self::assertSame(404, $this->request(self::FRONT . 'image.php?field=' . $field)['status']);
+                self::assertSame(404, $this->request(self::FRONT . 'image.php?field=' . $field . '&branding_entity=' . $entities['sibling'])['status']);
+            }
+            foreach (['-1', 'invalid', (string) PHP_INT_MAX, '%5B1%5D'] as $invalid) {
+                self::assertSame('', $this->request(self::FRONT . 'login.css.php?branding_entity=' . $invalid)['body']);
+            }
+            self::assertSame('', $this->request(self::FRONT . 'login.css.php?branding_entity[]=1')['body']);
+            // The public login parameter cannot bypass menu authentication.
+            self::assertContains($this->request(self::FRONT . 'image.php?field=logo_expanded&branding_entity=' . $parent)['status'], [302, 403]);
+
+            $this->login();
+            $source = GLPI_ROOT . '/public/pics/logos/logo-GLPI-100-black.png';
+            self::assertSame(302, $this->save(['plugin_branding_login_logo' => new CURLFile($source, 'image/png', 'child.png')], $child)['status']);
+            self::assertSame(file_get_contents($source), $this->request(self::FRONT . 'image.php?field=login_logo&branding_entity=' . $child)['body']);
+            self::assertSame(file_get_contents($fixture), $this->request(self::FRONT . 'image.php?field=login_logo&branding_entity=' . $parent)['body']);
+            self::assertSame(302, $this->save(['_plugin_branding_remove_login_logo' => '1'], $child)['status']);
+            self::assertSame(file_get_contents($fixture), $this->request(self::FRONT . 'image.php?field=login_logo&branding_entity=' . $child)['body']);
+        } finally {
+            foreach (array_reverse($entities) as $id) {
+                foreach (PluginBrandingConfig::FIELDS as $field) {
+                    PluginBrandingConfig::removeField($id, $field);
+                }
+                $DB->delete(PluginBrandingConfig::getTable(), ['entities_id' => $id]);
+                $DB->delete('glpi_entities', ['id' => $id]);
+            }
+            $DB->update('glpi_entities', ['sons_cache' => null], ['id' => 0]);
+            (new \Glpi\Cache\CacheManager())->getCoreCacheInstance()->delete('sons_cache_glpi_entities_0');
+            unlink($fixture);
+        }
     }
 
     public function testAnonymousEndpointsAndAccessRestrictions(): void
@@ -64,6 +152,10 @@ final class BrandingHttpTest extends TestCase
         self::assertSame(200, $css['status']);
         self::assertStringContainsString('text/css', $css['headers']);
         self::assertStringContainsString('no-store', $css['headers']);
+        $script = $this->request('/plugins/branding/js/login.js');
+        self::assertSame(200, $script['status']);
+        self::assertStringContainsString('javascript', $script['headers']);
+        self::assertStringContainsString('branding_entity', $script['body']);
         self::assertSame(404, $this->request(self::FRONT . 'image.php?field=invalid')['status']);
         self::assertContains($this->request(self::FRONT . 'menu.css.php')['status'], [302, 403]);
         self::assertContains($this->request(self::FRONT . 'image.php?field=logo_expanded')['status'], [302, 403]);
